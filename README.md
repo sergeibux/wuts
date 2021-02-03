@@ -18,7 +18,7 @@ WUTS is an opensource and communautary project that can ben used to find census 
 <!-- *** no indication -- no need *** -->
 
 ## Usage
-Simply access this [web page](http://www.whosunderthesea.org).
+Simply access this [preprod page](http://wuts.semeva.fr) or ~~[web page](http://www.whosunderthesea.org)~~.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

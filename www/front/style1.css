@@ -1,24 +1,3 @@
-/* * {
-    box-sizing: border-box;
-} */
-
-
-
-/* .row::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-[class*="col-"] {
-    float: left;
-    padding: 15px;
-} */
-
-/* html {
-    font-family: "Lucida Sans", sans-serif;
-} */
-
 header {
     background-color: #ffffff;
     color: #66ADB1;
@@ -30,9 +9,6 @@ main {
     background-image: url(./asset/images/ms-icon-310x310.png);
     width: 100%;
     height: 300px;
-}
-main .button {
-    
 }
 
 .menu li {

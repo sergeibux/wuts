@@ -24,35 +24,35 @@
     <meta name="msapplication-TileImage" content="./asset/images/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link type="text/css" href="style1.css" media="all" rel="stylesheet" />
+    <link type="text/css" href="../style1.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
     <!-- Navbar -->
     <header class="mb-center">
         <div>
-            <h3 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h3>
+            <a href="./accueil.html">
+                <h3 class="float-md-start mb-0">Consultation du catalogue</h3>
+            </a>
             <h6>Who's under the sea ?</h6>
         </div>
     </header>
 
-    <!-- Main -->
     <main>
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Identifiant</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Mot de passe</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <a type="submit" class="btn btn-dark" href="./pages/accueil.html">Connexion</a>
-        </form>
+
+        <div>carte</div>
+        <div>Nom verniculaire ou scientifique
+            <button>Recherche par mot clé</button>
+        </div>
+        <div>Quantité observée</div>
+        <div><button>Ajouter des photos</button></div>
+        <div>Remarque</div>
     </main>
 
     <!-- Footer -->
-
+    <div class="card-footer text-muted">
+        <p>Powered by Sébastien & Rodolphe</p>
+    </div>
 
     <script src="script1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

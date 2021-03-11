@@ -6,6 +6,7 @@ header {
 }
 
 main {
+    margin: 0 auto;
     background-image: url(./asset/images/ms-icon-310x310.png);
     background-repeat: no-repeat;
     width: 100%;

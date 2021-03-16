@@ -42,15 +42,24 @@
     <!-- Main -->
     <main>
         <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Identifiant</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label class="mdc-text-field mdc-text-field--filled">
+                <span class="mdc-text-field__ripple">Identifiant</span>
+                <span class="mdc-floating-label" id="my-label-id">Enter email</span>
+                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                <span class="mdc-line-ripple"></span>
+            </label>
+            <label class="mdc-text-field mdc-text-field--filled">
+                <span class="mdc-text-field__ripple">Mot de passe</span>
+                <span class="mdc-floating-label" id="my-label-id">Password</span>
+                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+                <span class="mdc-line-ripple"></span>
+            </label>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__label">Connexion</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Mot de passe</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <a type="submit" class="btn btn-dark" href="./pages/accueil.html">Connexion</a>
+            <a type="submit" class="btn btn-dark" href="./pages/accueil.html"></a>
         </form>
     </main>
 

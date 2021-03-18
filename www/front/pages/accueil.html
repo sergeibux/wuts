@@ -27,27 +27,46 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-    <link type="text/css" href="../style/style1.css" media="all" rel="stylesheet" />
+    <link type="text/css" href="../style/styleAccueil.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
     <!-- Navbar -->
     <header class="mb-center">
         <div>
-            <h3 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h3>
-            <h6>Who's under the sea ?</h6>
+            <h2 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h2>
+            <h4>Who's under the sea ?</h4>
         </div>
     </header>
     <main>
-        <div class="btn-group-vertical btn-group-lg border-info acceuil">
-            <a href="./consultCounting.html"><button> Consulter les comptages </button></a><br>
-            <a href="./counting.html"><button>Ajouter un comptage</button></a><br>
-            <a href="./newDiver.html"><button>Créer un plongeur</button></a>
+        <div class="multi-button">
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="consult">
+                    <span class="mdc-button__label">Consulter les comptages</span>
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="count">
+                    <span class="mdc-button__label">Ajouter un comptage</span>
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="diver">
+                    <span class="mdc-button__label">Créer un plongeur</span>
+                </button>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
 
+    <script type="text/javascript" src="../js/script-accueil.js"></script>
 </body>
 
 </html>

@@ -1,18 +1,17 @@
-body {
-    /* background-origin: border-box; */
-}
+body {}
 
 main {
-    background-image: url(../asset/images/ms-icon-310x310.png);
-    background-repeat: no-repeat;
-    height: 600px;
-    border: 1px solid #000;
+    /* background-image: url(../asset/images/ms-icon-310x310.png);
+    background-repeat: no-repeat; */
+    height: 420px;
+    margin: auto;
+    padding-top: 220px;
+    padding-left: 85px;
 }
 
 header {
     background-color: #ffffff;
     color: #66ADB1;
-    /* padding: 15px; */
     text-align: center;
 }
 
@@ -21,15 +20,12 @@ h4 {
 }
 
 form {
-    margin: 100px auto;
-    width: 80%;
+    margin: auto;
     height: 100px;
 }
 
-.custom-text-button,
-.custom-outlined-button {
-    --mdc-theme-primary: #FEDBD0;
-    --mdc-theme-on-primary: #442C2E;
+button {
+    --mdc-theme-primary: #47525E;
 }
 
 

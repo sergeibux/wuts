@@ -6,40 +6,20 @@ header {
 }
 
 main {
-    margin: 0 auto;
-    background-image: url(./asset/images/ms-icon-310x310.png);
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 300px;
+    background-image: url(../asset/images/ms-icon-310x310.png);
+    background-size: cover;
+    height: 400px;
+    margin: auto;
 }
 
-.menu li {
-    padding: 8px;
-    margin-bottom: 7px;
-    background-color: #33b5e5;
-    color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+.multi-button {
+    margin: auto;
+    padding-top: 100px;
+    padding-left: 50px;
 }
 
-.menu li:hover {
-    background-color: #0099cc;
-}
-
-.aside {
-    background-color: #33b5e5;
-    padding: 15px;
-    color: #ffffff;
-    text-align: center;
-    font-size: 14px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.footer {
-    background-color: #0099cc;
-    color: #ffffff;
-    text-align: center;
-    font-size: 12px;
-    padding: 15px;
+button {
+    --mdc-theme-primary: #47525E;
 }
 
 

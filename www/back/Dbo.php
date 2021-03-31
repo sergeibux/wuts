@@ -5,7 +5,7 @@ include_once 'Logger.php';
 
 class Dbo{
     private const DB_UNAME = 'semevafremgsb';
-    private const DB_NAME = 'mysql:host=semevafremgsb.mysql.db;dbname='. constants::DB_UNAME;
+    private const DB_NAME = 'mysql:host=semevafremgsb.mysql.db;dbname=' . Dbo::DB_UNAME;
     private const DB_PWD = 'PCmLJUwWGKW4SE';
         
     private $connected = false;
@@ -19,7 +19,7 @@ class Dbo{
      function connect(){
          loggerLog('conexion to DB ... 0.2.1', 'connect()', 'dboLog.txt', true, false);
         try{
-            $connexion = new PDO(constants::DB_NAME, constants::DB_UNAME, constants::DB_PWD);
+            $connexion = new PDO(Dbo::DB_NAME, Dbo::DB_UNAME, Dbo::DB_PWD);
 //             $connexion = new PDO(DB_NAME, DB_UNAME, DB_PWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
             loggerLog('conexion to DB ...0.2.2', 'connect()', 'dboLog.txt', true, false);
         } catch (PDOException $Exception) {
@@ -28,9 +28,9 @@ class Dbo{
             $result .= $Exception->getMessage();
             loggerLog('conexion to DB failed : ' 
                 . $result, 'connect()\n' 
-                . 'DB_NAME = '. constants::DB_NAME . '\n' 
-                . 'DB_UNAME = '. constants::DB_UNAME . '\n' 
-                . 'DB_PWD = '. constants::DB_PWD . '\n'
+                . 'DB_NAME = '. Dbo::DB_NAME . '\n' 
+                . 'DB_UNAME = '. Dbo::DB_UNAME . '\n' 
+                . 'DB_PWD = '. Dbo::DB_PWD . '\n'
                 , 'dboLog.txt', true, false);
             return false;
         }

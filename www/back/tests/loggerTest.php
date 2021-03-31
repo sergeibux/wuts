@@ -1,4 +1,9 @@
-<?php
+<html>
+   <head>
+   		<title>Dbo test... . . .  .  .  . </title>
+   	</head>
+   	<body>
+   	<?php
 include_once '../Logger.php';
     function loggerTest(){
         echo "make some tests...";
@@ -10,3 +15,6 @@ include_once '../Logger.php';
     }
     loggerTest();
 
+    ?>
+	</body>
+</html>

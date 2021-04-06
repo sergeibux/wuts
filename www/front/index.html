@@ -33,7 +33,7 @@
 <body>
     <!-- Navbar -->
     <header class="mb-center">
-        <div>
+        <div id="index">
             <h2 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h2>
             <h4>Who's under the sea ?</h4>
         </div>
@@ -41,30 +41,17 @@
 
     <!-- Main -->
     <main>
-        <form action="./pages/accueil.html">
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple">Identifiant</span>
-                <span class="mdc-floating-label" id="my-label-id">Enter email</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                <span class="mdc-line-ripple"></span>
-            </label>
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple">Mot de passe</span>
-                <span class="mdc-floating-label" id="my-label-id">Password</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                <span class="mdc-line-ripple"></span>
-            </label>
-            <div class="mdc-touch-target-wrapper">
-                <button class="mdc-button mdc-button--raised" type="submit">
-                    <span class="mdc-button__label">Connexion</span>
-                </button>
-            </div>
-        </form>
+
+        <div class="mdc-touch-target-wrapper" id="connect">
+            <button class="mdc-button mdc-button--raised" type="submit">
+                <span class="mdc-button__label">Connexion</span>
+            </button>
+        </div>
     </main>
 
     <!-- Footer -->
 
-    <script type="text/javascript" src="../js/script-index.js"></script>
+    <script type="text/javascript" src="./js/index.script.js"></script>
 </body>
 
 </html>

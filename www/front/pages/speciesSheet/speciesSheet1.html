@@ -27,44 +27,59 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-  <link type="text/css" href="../style/connection.style.css" media="all" rel="stylesheet" />
+  <link type="text/css" href="../../style/speciesSheet.style.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
   <!-- Navbar -->
   <header class="mb-center">
     <div id="index">
-      <h2 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h2>
+      <h2 class="float-md-start mb-0">Espèces rencontrées</h2>
       <h4>Who's under the sea ?</h4>
     </div>
   </header>
 
-  <!-- Main -->
   <main>
-    <form action="./pages/accueil.html">
+    <div class="carte">
+      <span>Lieu de l'observation</span>
+      <iframe title="carte" src="https://api.maptiler.com/maps/basic/?key=ptRri5SRXyugsx5Bdomf#14.0/44.6357/-1.1426">
+      </iframe>
+    </div>
+    <form action="">
+      <div>
+        <label class="mdc-text-field mdc-text-field--filled">
+          <span class="mdc-text-field__ripple">Nom verniculaire ou scientifique</span>
+          <input class="mdc-text-field__input" type="text" data-bind="value: branch">
+          <span class="mdc-line-ripple"></span>
+        </label>
+        <div class="mdc-touch-target-wrapper">
+          <button class="mdc-button mdc-button--raised" id="consult">
+            <span class="mdc-button__label">Cherhcer par<br>mot-clé</span>
+          </button>
+        </div>
+      </div>
       <label class="mdc-text-field mdc-text-field--filled">
-        <span class="mdc-text-field__ripple">Identifiant</span>
-        <span class="mdc-floating-label" id="my-label-id">Enter email</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <span class="mdc-text-field__ripple">Quantité observée</span>
+        <input class="mdc-text-field__input" type="text" data-bind="value: class">
         <span class="mdc-line-ripple"></span>
       </label>
-      <label class="mdc-text-field mdc-text-field--filled">
-        <span class="mdc-text-field__ripple">Mot de passe</span>
-        <span class="mdc-floating-label" id="my-label-id">Password</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-        <span class="mdc-line-ripple"></span>
-      </label>
+      <br>
       <div class="mdc-touch-target-wrapper">
-        <button class="mdc-button mdc-button--raised" type="submit">
-          <span class="mdc-button__label">Connexion</span>
+        <button class="mdc-button mdc-button--raised" id="consult">
+          <span class="mdc-button__label">Ajouter des<br>photos</span>
         </button>
       </div>
+      <br>
+      <label class="mdc-text-field mdc-text-field--filled">
+        <span class="mdc-text-field__ripple">Remarques</span>
+        <input class="mdc-text-field__input" type="text" data-bind="value: order" multiline>
+        <span class="mdc-line-ripple"></span>
+      </label>
     </form>
   </main>
 
   <!-- Footer -->
-
-  <script type="text/javascript" src="../js/connection.script.js"></script>
+  <script src="../../js/speciesSheet.script.js"></script>
 </body>
 
 </html>

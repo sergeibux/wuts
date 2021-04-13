@@ -1,27 +1,28 @@
-body {}
-
-main {
-    /* background-image: url(../asset/images/ms-icon-310x310.png);
-    background-repeat: no-repeat; */
-    height: 420px;
-    margin: auto;
-    padding-top: 220px;
-    padding-left: 85px;
-}
-
 header {
     background-color: #ffffff;
     color: #66ADB1;
+    padding: 15px;
     text-align: center;
+}
+
+main {
+    background-image: url(../asset/images/ms-icon-310x310.png); 
+    background-size: cover;
+    height: 400px;
+    margin: auto;
+}
+
+.multi-button {
+    margin: auto;
+    padding-top: 100px;
+    padding-left: 50px;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
 }
 
 h4 {
     color: #C5E0E1;
-}
-
-form {
-    margin: auto;
-    height: 100px;
 }
 
 button {

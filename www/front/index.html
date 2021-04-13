@@ -27,25 +27,40 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-    <link type="text/css" href="./style/index.css" media="all" rel="stylesheet" />
+    <link type="text/css" href="./style/index.style.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
     <!-- Navbar -->
     <header class="mb-center">
-        <div id="index">
+        <div>
             <h2 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h2>
             <h4>Who's under the sea ?</h4>
         </div>
     </header>
-
-    <!-- Main -->
     <main>
-
-        <div class="mdc-touch-target-wrapper" id="connect">
-            <button class="mdc-button mdc-button--raised" type="submit">
-                <span class="mdc-button__label">Connexion</span>
-            </button>
+        <div class="multi-button">
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="register">
+                    <span class="mdc-button__label">Inscrivez-<br>vous</span>
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="connect">
+                    <span class="mdc-button__label">Connectez-<br>vous</span>
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="consult">
+                    <span class="mdc-button__label">Consulter le<br>catalogue</span>
+                </button>
+            </div>
         </div>
     </main>
 

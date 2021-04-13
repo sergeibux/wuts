@@ -27,44 +27,54 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-  <link type="text/css" href="../style/connection.style.css" media="all" rel="stylesheet" />
+  <link type="text/css" href="../style/species.style.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
   <!-- Navbar -->
   <header class="mb-center">
     <div id="index">
-      <h2 class="float-md-start mb-0" href="#">Bienvenue -- WUTS</h2>
+      <h2 class="float-md-start mb-0" href="#">Fiche espèce</h2>
       <h4>Who's under the sea ?</h4>
     </div>
   </header>
-
-  <!-- Main -->
   <main>
-    <form action="./pages/accueil.html">
-      <label class="mdc-text-field mdc-text-field--filled">
-        <span class="mdc-text-field__ripple">Identifiant</span>
-        <span class="mdc-floating-label" id="my-label-id">Enter email</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-        <span class="mdc-line-ripple"></span>
-      </label>
-      <label class="mdc-text-field mdc-text-field--filled">
-        <span class="mdc-text-field__ripple">Mot de passe</span>
-        <span class="mdc-floating-label" id="my-label-id">Password</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-        <span class="mdc-line-ripple"></span>
-      </label>
+    <div class="button">
       <div class="mdc-touch-target-wrapper">
-        <button class="mdc-button mdc-button--raised" type="submit">
-          <span class="mdc-button__label">Connexion</span>
+        <button class="mdc-button mdc-button--raised" id="consult">
+          <span class="mdc-button__label">Chercher une<br>autre espèce</span>
         </button>
       </div>
-    </form>
+    </div>
+    <div>
+      <img src="" alt="image api">
+    </div>
+    <div>
+      <h6>Recensement</h6>
+      <p>Nombre total d'espèces observées : </p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="mdc-touch-target-wrapper">
+      <button class="mdc-button mdc-button--raised" id="count">
+        <span class="mdc-button__label">Ajouter un<br>comptage</span>
+      </button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="mdc-touch-target-wrapper">
+      <button class="mdc-button mdc-button--raised" id="diver">
+        <span class="mdc-button__label">Créer un<br>plongeur</span>
+      </button>
+    </div>
+    </div>
   </main>
 
   <!-- Footer -->
 
-  <script type="text/javascript" src="../js/connection.script.js"></script>
+  <script type="text/javascript" src="../js/species.script.js"></script>
 </body>
 
 </html>

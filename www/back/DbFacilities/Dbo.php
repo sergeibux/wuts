@@ -16,7 +16,7 @@ class Dbo{
         loggerLog('conexion to DB ... 0.1', 'connect__construct()', 'dboLog.txt', true, false);
     }
     
-     function connect(){
+    function connect(){
          loggerLog('conexion to DB ... 0.2.1', 'connect()', 'dboLog.txt', true, false);
         try{
             $connexion = new PDO(Dbo::DB_NAME, Dbo::DB_UNAME, Dbo::DB_PWD);
@@ -36,6 +36,10 @@ class Dbo{
         }
         loggerLog('conexion to DB established 0.2.4', 'connect()', 'dboLog.txt', true, false);
         return true;
+     }
+     
+     function sendRequest(string $request){
+         loggerLog('will send request : ' . $request, 'sendRequest()', 'dboLog.txt', true, false);
      }
 }
 

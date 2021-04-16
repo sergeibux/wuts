@@ -1,10 +1,11 @@
 // Navigation vers les autres pages
-document.getElementById('index').onclick = () => {
-    location.href = '../index.html';
+
+document.getElementById('register').onclick = () => {
+    location.href = './pages/newDiver.html';
 }
 document.getElementById('connect').onclick = () => {
-    location.href = '../pages/connection.html';
+    location.href = './pages/connection.html';
 }
 document.getElementById('consult').onclick = () => {
-    location.href = '../pages/consultCounting.html';
+    location.href = './pages/consultCounting.html';
 }

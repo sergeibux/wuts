@@ -2,6 +2,6 @@
 document.getElementById('connect').onclick = () => {
     location.href = '../pages/connection.html';
 }
-document.getElementById('').onclick = () => {
-    location.href = '';
+document.getElementById('index').onclick = () => {
+    location.href = '../../index.html';
 }

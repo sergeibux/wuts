@@ -1,13 +1,13 @@
 // Navigation vers les autres pages
 document.getElementById('index').onclick = () => {
-    location.href = '../index.html';
+    location.href = '../../index.html';
 }
 document.getElementById('consult').onclick = () => {
-    location.href = '../pages/consultCounting.html';
+    location.href = '../consultCounting/consultCounting.html';
 }
 document.getElementById('count').onclick = () => {
-    location.href = '../pages/counting.html';
+    location.href = '../counting/counting.html';
 }
 document.getElementById('diver').onclick = () => {
-    location.href = '../pages/newDiver.html';
+    location.href = '../newDiver/newDiver.html';
 }

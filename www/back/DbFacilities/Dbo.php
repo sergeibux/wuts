@@ -1,4 +1,3 @@
-<br>--- - - -  -  -  -
 <?php
 
 include_once 'Logger.php';

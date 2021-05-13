@@ -1,79 +1,78 @@
 <?php
 
+
 class Specimen
 {
     private $id;
     private $scientificName;
     private $frenchName;
-    private $observedQuantity;
-    private $stageOfDevelopment;
+    private $devStage;
     private $picture;
     private $behaviorNotes;
     private $genericNote;
     private $characteristics;
-    private $identificationKeys;
+    private $identKeys;
     private $id_statusIndex;
     private $id_specieGender;
     
     public function __construct(){
-        
+        echo "<h1>=>test</h1><hr>";
     }
-        
-    public function __construct(
+
+    function newSpecimen(
         int $id,
         string $scientificName,
         string $frenchName,
-        int $observedQuantity,
-        string $stageOfDevelopment,
+        string $devStage,
         string $picture,
         string $behaviorNotes,
         string $genericNote,
         string $characteristics,
-        string $identificationKeys,
-        string $id_statusIndex,
-        string $id_specieGender
+        string $identKeys,
+        int $id_statusIndex,
+        int $id_specieGender
         ){
             
             $this->$id = $id;
             $this->scientificName = $scientificName;
             $this->frenchName = $frenchName;
-            $this->$observedQuantity = $observedQuantity;
-            $this->$stageOfDevelopment = $stageOfDevelopment;
+            $this->$devStage = $devStage;
             $this->$picture = $picture;
             $this->$behaviorNotes = $behaviorNotes;
             $this->$genericNote = $genericNote;
             $this->$characteristics = $characteristics;
-            $this->$identificationKeys = $identificationKeys;
+            $this->$identKeys = $identKeys;
             $this->$id_statusIndex = $id_statusIndex;
             $this->$id_specieGender = $id_specieGender;
     }
-    
-    public function __construct(
-        string $scientificName,
-        string $frenchName,
-        int $observedQuantity,
-        string $stageOfDevelopment,
-        string $picture,
-        string $behaviorNotes,
-        string $genericNote,
-        string $characteristics,
-        string $identificationKeys,
-        string $id_statusIndex,
-        string $id_specieGender
-        ){
+        
+//     public function __construct(
+//         string $scientificName,
+//         string $frenchName,
+//         int $observedQuantity,
+//         string $devStage,
+//         string $picture,
+//         string $behaviorNotes,
+//         string $genericNote,
+//         string $characteristics,
+//         string $identKeys,
+//         int $id_statusIndex,
+//         int $id_specieGender
+//         ){
             
-            $this->scientificName = $scientificName;
-            $this->frenchName = $frenchName;
-            $this->$observedQuantity = $observedQuantity;
-            $this->$stageOfDevelopment = $stageOfDevelopment;
-            $this->$picture = $picture;
-            $this->$behaviorNotes = $behaviorNotes;
-            $this->$genericNote = $genericNote;
-            $this->$characteristics = $characteristics;
-            $this->$identificationKeys = $identificationKeys;
-            $this->$id_statusIndex = $id_statusIndex;
-            $this->$id_specieGender = $id_specieGender;
-    }
+//             $this->scientificName = $scientificName;
+//             $this->frenchName = $frenchName;
+//             $this->observedQuantity = $observedQuantity;
+//             $this->stageOfDevelopment = $devStage;
+//             $this->picture = $picture;
+//             $this->behaviorNotes = $behaviorNotes;
+//             $this->genericNote = $genericNote;
+//             $this->characteristics = $characteristics;
+//             $this->identificationKeys = $identKeys;
+//             $this->id_statusIndex = $id_statusIndex;
+//             $this->id_specieGender = $id_specieGender;
+//     }
+    
     public function getId()
     {
         return $this->id;
@@ -87,11 +86,6 @@ class Specimen
     public function getFrenchName()
     {
         return $this->frenchName;
-    }
-
-    public function getObservedQuantity()
-    {
-        return $this->observedQuantity;
     }
 
     public function getStageOfDevelopment()
@@ -149,14 +143,9 @@ class Specimen
         $this->frenchName = $name;
     }
 
-    public function setObservedQuantity(int $observedQuantity)
+    public function setStageOfDevelopment(string $devStage)
     {
-        $this->observedQuantity = $observedQuantity;
-    }
-
-    public function setStageOfDevelopment(string $stageOfDevelopment)
-    {
-        $this->stageOfDevelopment = $stageOfDevelopment;
+        $this->stageOfDevelopment = $devStage;
     }
 
     public function setPicture(string $picture)
@@ -179,9 +168,9 @@ class Specimen
         $this->characteristics = $characteristics;
     }
 
-    public function setIdentificationKeys(string $identificationKeys)
+    public function setIdentificationKeys(string $identKeys)
     {
-        $this->identificationKeys = $identificationKeys;
+        $this->identificationKeys = $identKeys;
     }
 
     public function setId_statusIndex(int $id_statusIndex)

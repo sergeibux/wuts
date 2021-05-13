@@ -10,6 +10,7 @@ class Observation
     private $population;
     private $id_userWutsIndex;
     private $id_status;
+    private $id_specimen;
     
     public function __construct(int $id_observationPrimaire, string $observationDate, string $geographicalArea, array $polygon, string $distinctiveSign, int $population, int $id_userWutsIndex, int $status){
         $this->id_observationPrimaire = $id_observationPrimaire;
@@ -98,7 +99,23 @@ class Observation
     {
         return $this->id_status;
     }
-
+    
+    /**
+     * @return int
+     */
+    public function getId_specimen()
+    {
+        return $this->id_specimen;
+    }
+    
+    /**
+     * @param int $id_specimen
+     */
+    public function setId_specimen(int $id_specimen)
+    {
+        $this->id_specimen = $id_specimen;
+    }
+    
     public function setId_observationPrimaire(int $id_observationPrimaire)
     {
         $this->id_observationPrimaire = $id_observationPrimaire;

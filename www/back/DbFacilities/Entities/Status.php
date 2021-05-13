@@ -1,6 +1,6 @@
 <?php
 
-class Statuis
+class Status
 {
     private $id;
     private $name;

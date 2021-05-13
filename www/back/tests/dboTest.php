@@ -25,17 +25,17 @@ include_once '../DbFacilities/DbSucker.php';
     }
     
     function dbSuckerTest(){
-        loggerLog('calling DbSucker ... 0', 'DbSuckerTest()', 'dboLog.txt', true, false);
+        loggerLog('calling DbSucker : create object ... 0', 'DbSuckerTest()', 'dboLog.txt', true, false);
         $dbSucker = new DbSucker();
-        loggerLog('calling DbSucker ... 1', 'DbSuckerTest()', 'dboLog.txt', true, false);
+        loggerLog('calling DbSucker : obect created ... 1', 'DbSuckerTest()', 'dboLog.txt', true, false);
     }
     
     
 //     connectTest();
 //     dbCreatorTest();
-    loggerLog('test DbSucker ... 0', 'Test()', 'dboLog.txt', true, true);
+    loggerLog('test DbSucker started ... 0', 'Test()', 'dboLog.txt', true, false);
     dbSuckerTest();
-    loggerLog('test DbSucker ... 1', 'Test()', 'dboLog.txt', true, false);
+    loggerLog('test DbSucker completed ... 1', 'Test()', 'dboLog.txt', true, false);
 ?>
 <br>.
 <hr>

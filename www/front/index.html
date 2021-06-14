@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-    <link type="text/css" href="./style/index.css" media="all" rel="stylesheet" />
+    <link type="text/css" href="./index/index.style.css" media="all" rel="stylesheet" />
 </head>
 
 <body>
@@ -38,33 +38,35 @@
             <h4>Who's under the sea ?</h4>
         </div>
     </header>
-
-    <!-- Main -->
     <main>
-        <form action="./pages/accueil.html">
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple">Identifiant</span>
-                <span class="mdc-floating-label" id="my-label-id">Enter email</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                <span class="mdc-line-ripple"></span>
-            </label>
-            <label class="mdc-text-field mdc-text-field--filled">
-                <span class="mdc-text-field__ripple">Mot de passe</span>
-                <span class="mdc-floating-label" id="my-label-id">Password</span>
-                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
-                <span class="mdc-line-ripple"></span>
-            </label>
+        <div class="multi-button">
             <div class="mdc-touch-target-wrapper">
-                <button class="mdc-button mdc-button--raised" type="submit">
-                    <span class="mdc-button__label">Connexion</span>
+                <button class="mdc-button mdc-button--raised" id="register">
+                    <span class="mdc-button__label">Inscrivez-<br>vous</span>
                 </button>
             </div>
-        </form>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="connect">
+                    <span class="mdc-button__label">Connectez-<br>vous</span>
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="mdc-touch-target-wrapper">
+                <button class="mdc-button mdc-button--raised" id="consult">
+                    <span class="mdc-button__label">Consulter le<br>catalogue</span>
+                </button>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
 
-    <script type="text/javascript" src="../js/script-index.js"></script>
+    <script type="text/javascript" src="./index/index.script.js"></script>
 </body>
 
 </html>

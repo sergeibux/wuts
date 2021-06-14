@@ -104,15 +104,12 @@ class DbSucker{
                     "null",
                     0,
                     0
-                    ); //TODO do not works
-//                 $species[$id]->newSpecimen(0); //TODO do not works
+                    );
                     loggerLog('new specimen created : ' . $species[$id]->getScientificName(), 'mnhn_suscker()', 'dboLog.txt', true, false);
-//                 echo "espèce #$id<br>";
+                    //TODO save into DB
                 $j++;
                 echo "j = $j<hr>";
             }
-//TODO for test
-// return;
             $i += LIMIT;
             echo "i = $i";
         }

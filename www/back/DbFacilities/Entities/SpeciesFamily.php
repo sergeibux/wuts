@@ -1,4 +1,6 @@
 <?php
+include_once 'SpeciesOrder.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
 
 class speciesFamily
 {
@@ -9,19 +11,22 @@ class speciesFamily
     private $id_specieOrder;
     
     
-    public function __construct(int $id, string $scientificTerms, string $descriptive, string $frenchTerms, int $id_specieOrder) {
-        $this->$id = $id;
-        $this->$scientificTerms = $scientificTerms;
-        $this->$descriptive = $descriptive;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$id_specieOrder = $id_specieOrder;
+    public function __construct(string $scientificTerms, string $descriptive, string $frenchTerms,
+        SpeciesOrder $speciesOrder){
+        $this->scientificTerms = $scientificTerms;
+        $this->descriptive = $descriptive;
+        $this->frenchTerms = $frenchTerms;
+        $this->id_specieOrder = $speciesOrder->dbSave();
+        $this->id = $this->dbSave();
     }
     
-    public function __construct(string $scientificTerms, string $descriptive, string $frenchTerms, int $id_specieOrder) {
-        $this->$scientificTerms = $scientificTerms;
-        $this->$descriptive = $descriptive;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$id_specieOrder = $id_specieOrder;
+    public function dbSave(){
+        $db = new Dbo();
+        $table = "speciesFamily";
+        $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesOrder");
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_specieOrder[0]);
+        $this->id = $db->addToTable($table, $columns, $values);
+        return $this->id;
     }
 
     /**

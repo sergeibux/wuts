@@ -33,17 +33,17 @@ class Specimen
         int $id_specieGender
         ){
             
-            $this->$id = $id;
+            $this->id = $id;
             $this->scientificName = $scientificName;
             $this->frenchName = $frenchName;
-            $this->$devStage = $devStage;
-            $this->$picture = $picture;
-            $this->$behaviorNotes = $behaviorNotes;
-            $this->$genericNote = $genericNote;
-            $this->$characteristics = $characteristics;
-            $this->$identKeys = $identKeys;
-            $this->$id_statusIndex = $id_statusIndex;
-            $this->$id_specieGender = $id_specieGender;
+            $this->devStage = $devStage;
+            $this->picture = $picture;
+            $this->behaviorNotes = $behaviorNotes;
+            $this->genericNote = $genericNote;
+            $this->characteristics = $characteristics;
+            $this->identKeys = $identKeys;
+            $this->id_statusIndex = $id_statusIndex;
+            $this->id_specieGender = $id_specieGender;
     }
         
 //     public function __construct(

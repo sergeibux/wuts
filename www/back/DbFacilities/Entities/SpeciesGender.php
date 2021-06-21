@@ -1,5 +1,6 @@
 <?php
-namespace back\DbFacilities\Entities;
+include_once 'SpeciesFamily.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
 
 class SpeciesGender
 {
@@ -10,22 +11,28 @@ class SpeciesGender
     private $id_specieFamily;
     
     
-    public function __construct(int $id, string $scientificTerms, string $frenchTerms, string $descriptive, int $id_specieFamily){
-        $this->$id = $id;
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$descriptive = $descriptive;
-        $this->$id_specieFamily = $id_specieFamily;
+    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive,
+        SpeciesFamily $speciesFamily){
+        
+            $this->scientificTerms = $scientificTerms;
+            $this->frenchTerms = $frenchTerms;    
+            $this->descriptive = $descriptive;    
+            $this->id_specieFamily = $speciesFamily->dbSave();
+            $this->id = $this->dbSave();
     }
     
-    
-    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive, int $id_specieFamily){
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;    
-        $this->$descriptive = $descriptive;    
-        $this->$id_specieFamily = $id_specieFamily;
+    public function dbSave(){
+        $db = new Dbo();
+        $table = "speciesGender";
+        $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesFamily");
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesFamily[0]);
+        $this->id = $db->addToTable($table, $columns, $values);
+        return $this->id;
     }
     
+    public function getIdByName(string $name){
+        //todo find into DB
+    }
     /**
      * @return int
      */

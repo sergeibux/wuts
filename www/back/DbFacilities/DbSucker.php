@@ -1,14 +1,19 @@
 <?php
-
-include_once 'Logger.php';
-include_once 'Entities/Specimen.php';
-set_time_limit(8640000);
+ini_set('display_errors', 1);
+include_once '../Logger.php';
+include_once '../DbFacilities/Entities/Species.php';
+include_once '../DbFacilities/Entities/SpeciesGender.php';
+include_once '../DbFacilities/Entities/SpeciesFamily.php';
+include_once '../DbFacilities/Entities/SpeciesOrder.php';
+include_once '../DbFacilities/Entities/SpeciesClass.php';
+include_once '../DbFacilities/Entities/SpeciesBranch.php';
+// set_time_limit(8640000); TODO
 
 class DbSucker{
     const FISHBASE = "Fishbase";
     const MNHN = "Mnhm";
     
-    function DbSucker(){
+    function __construct(){
         loggerLog('calling DbSucker ... 0', 'DbSucker()', 'dboLog.txt', true, false);
 //         $this->fishbase_sucker();
         $this->mnhn_sucker();
@@ -58,12 +63,15 @@ class DbSucker{
             echo "<hr><h4>species from $i to " . (($i + LIMIT) - 1) . "</h4>";
             $tabSize = sizeof($jsonTab);
             for ($j=0; $j<$tabSize; ){
+                echo "espèce #débutfin<br>";
                 $distSpecies = $jsonTab[$j]["Species"];
                 $id = $j + $i;
-                $species[$id] = new Specimen();
+                $species[$id] = new Species();
                 echo "espèce #" . ($id) . " : " . $species . "<br>";
                 $j++;
+                echo "espèce #fin<br>";
             }
+            echo "espèce #after<br>";
             $i += LIMIT;
         }
     }
@@ -81,34 +89,43 @@ class DbSucker{
         if ($totalAmount <= 0){
             return;
         }
-        for ($i = 0; $i <= $totalAmount; ){
-            var_dump($distSpecies);
+        for ($i = 0; $i < $totalAmount; ){
             $jsonTab = $this->getSpeciesByIdRange($dataSrc, $i, LIMIT);
             echo "<hr><h4>species from $i to " . (($i + LIMIT) - 1) . "</h4>";
             $tabSize = sizeof($jsonTab);
-            for ($j=0; $j<$tabSize; ){
+            for ($j=0; $j<$tabSize; $j++){
                 $distSpecies = $jsonTab[$j];
-                $id = $j + $i;
-                echo "Id = $id<br>";
-                echo "espèce #$id : " . $distSpecies["scientificName"] . " : " . $distSpecies["frenchVernacularName"] . "<br>";
-                $species[$id] = new Specimen();
-                $species[$id]->newSpecimen(
-                    $id,
-                    $distSpecies["scientificName"],
-                    $distSpecies["frenchVernacularName"],
-                    "null",
-                    "null",
-                    "null",
-                    "null",
-                    "null",
-                    "null",
-                    0,
-                    0
+                echo "<br>Create new branch ??<br>";
+                
+                $phylumName = $distSpecies["phylumName"] != null ? $distSpecies["phylumName"] : "";
+                $vernacularGroup1 = $distSpecies["vernacularGroup1"] != null ? $distSpecies["vernacularGroup1"] : "";
+                $branch = new SpeciesBranch($phylumName, $vernacularGroup1, "");
+                
+                $className = $distSpecies["className"] != null ? $distSpecies["className"] : "";
+                $vernacularClassName = $distSpecies["vernacularClassName"] != null ? $distSpecies["vernacularClassName"] : "";
+                $class = new SpeciesClass($className, $vernacularClassName, "", $branch);
+                
+                $orderName = $distSpecies["orderName"] != null ? $distSpecies["orderName"] : "";
+                $order = new SpeciesOrder($orderName, "", "", $class);
+                
+                $familyName = $distSpecies["familyName"] != null ? $distSpecies["familyName"] : "";
+                $family = new SpeciesFamily($familyName, "", "", $order);
+                
+                $genusName = $distSpecies["genusName"] != null ? $distSpecies["genusName"] : "";
+                $gender = new SpeciesGender($genusName, "", "", $family);
+                
+                $scientificName =  $distSpecies["scientificName"] != null ? $distSpecies["scientificName"] : "";
+                $frenchVernacularName =  $distSpecies["frenchVernacularName"] != null ? $distSpecies["frenchVernacularName"] : "";
+                $englishVernacularName =  $distSpecies["englishVernacularName"] != null ? $distSpecies["englishVernacularName"] : "";
+                $species = new Species(
+                    $scientificName,
+                    $frenchVernacularName,
+                    $englishVernacularName,
+                    "defaultPict.png",
+                    "",
+                    $gender
                     );
-                    loggerLog('new specimen created : ' . $species[$id]->getScientificName(), 'mnhn_suscker()', 'dboLog.txt', true, false);
-                    //TODO save into DB
-                $j++;
-                echo "j = $j<hr>";
+                echo "j = $j<br>Specie #$species->getId() recorded into db.<hr><br>";
             }
             $i += LIMIT;
             echo "i = $i";
@@ -155,7 +172,6 @@ class DbSucker{
             $jsonTab = $apiResult_decoded["_embedded"]["taxa"];
         }
         loggerLog('calling DbSucker ... 8', 'getSpeciesByIdRange()', 'dboLog.txt', true, false);
-        echo "JSON : <br>" . $jsonTab;
         return $jsonTab;
     }
     
@@ -187,7 +203,10 @@ class DbSucker{
             //TODO test
             loggerLog('calling DbSucker ... 12', 'getSpeciesCount()', 'dboLog.txt', true, false);
             $url = "https://taxref.mnhn.fr/api/taxa/search?domain=marin&page=1&size=$limit";
+            loggerLog('Calling DbSucker ... 12.1 :.: url = ' . $url, 'getSpeciesCount()', 'dboLog.txt', true, false);
             $result = curl($url, $cookie = false, $post = false, $header = false, $follow_location = false, $referer=false, $proxy=false);
+            loggerLog('calling DbSucker ... 12.2 :: result = ...', 'getSpeciesCount()', 'dboLog.txt', true, false);
+            loggerLog('calling DbSucker ... 12.2 :: result = ' . json_decode($result, true), 'getSpeciesCount()', 'dboLog.txt', true, false);
             if (!$result) {
 //                 echo 'result :__: ' . var_dump($result);
                 loggerLog('No data found (uri = ' . $uri . ') : curl ' . var_dump($curl) . '.', 'getSpeciesCount(' . $source . ')', 'dboLog.txt', true, true);
@@ -201,6 +220,7 @@ class DbSucker{
         loggerLog('calling DbSucker ... 14', 'getSpeciesCount()', 'dboLog.txt', true, false);
         return $total;
     }
+
 }
 
 function curl($url, $cookie = false, $post = false, $header = false, $follow_location = false, $referer=false,$proxy=false){
@@ -225,4 +245,5 @@ function curl($url, $cookie = false, $post = false, $header = false, $follow_loc
     curl_close($ch);
     return $response;
 }
+
 ?>

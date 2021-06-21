@@ -1,29 +1,36 @@
 <?php
+include_once 'SpeciesBranch.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
 
 class SpeciesClass
 {
-    private $id_specieClassPrimaire;
+    private $id;
     private $scientificTerms;
     private $descriptive;
     private $frenchTerms;
     private $id_specieBranch;
     
-    public function __construct(int $id, string $scientificTerms, string $descriptive, string $frenchTerms, int $id_specieBranch){
-        $this->$id_specieClassPrimaire = $id;
-        $this->$scientificTerms = $scientificTerms;
-        $this->$descriptive = $descriptive;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$id_specieBranch = $id_specieBranch;
-    }
     
     /**
      * use this functiononly if you do not know ID
      */
-    public function __construct(string $scientificTerms, string $descriptive, string $frenchTerms, int $id_specieBranch){
-        $this->$scientificTerms = $scientificTerms;
-        $this->$descriptive = $descriptive;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$id_specieBranch = $id_specieBranch;
+    public function __construct(string $scientificTerms, string $descriptive, string $frenchTerms,
+        SpeciesBranch $speciesBranch){
+        
+            $this->scientificTerms = $scientificTerms;
+            $this->descriptive = $descriptive;
+            $this->frenchTerms = $frenchTerms;
+            $this->id_specieBranch = $speciesBranch->dbSave();
+            $this->id = $this->dbSave();
+    }
+    
+    public function dbSave(){
+        $db = new Dbo();
+        $table = "speciesClass";
+        $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesBranch");
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_specieBranch[0]);
+        $this->id = $db->addToTable($table, $columns, $values);
+        return $this->id;
     }
     
     /**

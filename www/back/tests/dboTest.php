@@ -5,8 +5,8 @@
 <body>Dbo test... . . .  .  .  . <hr>
 <?php
 //     include_once '../Dbo.php';
-include_once '../DbFacilities/DbCreator.php';
-include_once '../DbFacilities/DbSucker.php';
+    include_once '../DbFacilities/DbCreator.php';
+    include_once '../DbFacilities/DbSucker.php';
     include_once '../Logger.php';
     
     function connectTest(){

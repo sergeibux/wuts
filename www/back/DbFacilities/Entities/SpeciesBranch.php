@@ -1,26 +1,28 @@
 <?php
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
 
 class SpeciesBranch
 {
-    private $id_specieBranchPrimaire;
+    private $id;
     private $scientificTerms;
     private $frenchTerms;
     private $descriptive;
     
-    public function __construct(int $id, string $scientificTerms, string $frenchTerms, string $descriptive){
-        $this->$id_specieBranchPrimaire = $id;
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$descriptive = $descriptive;
+    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive){
+        echo "<br>creating new branch ...<br>";
+        $this->scientificTerms = $scientificTerms;
+        $this->frenchTerms = $frenchTerms;
+        $this->descriptive = $descriptive;
+        $this->id = $this->dbSave();
     }
     
-    /**
-     * use this functiononly if you do not know ID
-     */
-    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive){
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$descriptive = $descriptive;
+    public function dbSave(){
+        $db = new Dbo();
+        $table = "speciesBranch";
+        $columns = array("scientificTerms", "frenchTerms", "descriptive");
+        $values = array($this->scientificTerms, $this->frenchTerms, $this->descriptive);
+        $this->id = $db->addToTable($table, $columns, $values);
+        return $this->id;
     }
     
     /**

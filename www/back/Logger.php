@@ -28,7 +28,6 @@ function loggerLog(string $msg, string $origin, string $targetFile, bool $consol
     if ($alert == true){
         alertLog($msg);
     }
-    echo 'YES !';
 }
 
 function alertLog($msg){

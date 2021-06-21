@@ -1,4 +1,6 @@
 <?php
+include_once 'SpeciesClass.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
 
 class SpeciesOrder
 {
@@ -6,21 +8,26 @@ class SpeciesOrder
     private $scientificTerms;
     private $frenchTerms;
     private $descriptive;
-    private $id_specieClass;
+    private $id_speciesClass;
     
-    public function __construct(int $id, string $scientificTerms, string $frenchTerms, string $descriptive, int $id_specieClass){
-        $this->$id = $id;
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$descriptive = $descriptive;
-        $this->$id_specieClass = $id_specieClass;
+    
+    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive,
+        SpeciesClass $speciesClass){
+        
+            $this->scientificTerms = $scientificTerms;
+            $this->frenchTerms = $frenchTerms;
+            $this->descriptive = $descriptive;
+            $this->id_speciesClass = $speciesClass->dbSave();
+            $this->id = $this->dbSave();
     }
     
-    public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive, int $id_specieClass){
-        $this->$scientificTerms = $scientificTerms;
-        $this->$frenchTerms = $frenchTerms;
-        $this->$descriptive = $descriptive;
-        $this->$id_specieClass = $id_specieClass;
+    public function dbSave(){
+        $db = new Dbo();
+        $table = "speciesOrder";
+        $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesClass");
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesClass[0]);
+        $this->id = $db->addToTable($table, $columns, $values);
+        return $this->id;
     }
     
     /**
@@ -60,7 +67,7 @@ class SpeciesOrder
      */
     public function getId_specieClass()
     {
-        return $this->id_specieClass;
+        return $this->id_speciesClass;
     }
 
     public function setId(int $id)
@@ -85,7 +92,7 @@ class SpeciesOrder
 
     public function setId_specieClass(int $id_specieClass)
     {
-        $this->id_specieClass = $id_specieClass;
+        $this->id_speciesClass = $id_specieClass;
     }
 
 }

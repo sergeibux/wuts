@@ -8,8 +8,11 @@ header {
 main {
   background-image: url(../asset/images/ms-icon-310x310.png);
   background-size: cover;
-  height: 400px;
+  display: block;
+  height: 240px;
   margin: auto;
+  padding: 35% 0;
+  text-align: center;
 }
 
 .multi-button {

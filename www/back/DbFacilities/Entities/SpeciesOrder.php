@@ -17,7 +17,7 @@ class SpeciesOrder
             $this->scientificTerms = $scientificTerms;
             $this->frenchTerms = $frenchTerms;
             $this->descriptive = $descriptive;
-            $this->id_speciesClass = $speciesClass->dbSave();
+            $this->id_speciesClass = $speciesClass->getId();
             $this->id = $this->dbSave();
     }
     
@@ -25,7 +25,7 @@ class SpeciesOrder
         $db = new Dbo();
         $table = "speciesOrder";
         $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesClass");
-        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesClass[0]);
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesClass);
         $this->id = $db->addToTable($table, $columns, $values);
         return $this->id;
     }

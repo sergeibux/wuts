@@ -8,7 +8,7 @@ class SpeciesGender
     private $scientificTerms;
     private $frenchTerms;
     private $descriptive;
-    private $id_specieFamily;
+    private $id_speciesFamily;
     
     
     public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive,
@@ -17,7 +17,7 @@ class SpeciesGender
             $this->scientificTerms = $scientificTerms;
             $this->frenchTerms = $frenchTerms;    
             $this->descriptive = $descriptive;    
-            $this->id_specieFamily = $speciesFamily->dbSave();
+            $this->id_speciesFamily = $speciesFamily->getId();
             $this->id = $this->dbSave();
     }
     
@@ -25,7 +25,7 @@ class SpeciesGender
         $db = new Dbo();
         $table = "speciesGender";
         $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesFamily");
-        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesFamily[0]);
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_speciesFamily);
         $this->id = $db->addToTable($table, $columns, $values);
         return $this->id;
     }

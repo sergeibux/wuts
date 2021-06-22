@@ -28,9 +28,9 @@ class SpeciesBranch
     /**
      * @return int
      */
-    public function getId_specieBranchPrimaire()
+    public function getId()
     {
-        return $this->id_specieBranchPrimaire;
+        return $this->id;
     }
 
     /**

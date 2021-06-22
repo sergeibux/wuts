@@ -15,11 +15,9 @@ class Dbo{
     }
     
     function connect(){
-         loggerLog('conexion to DB ... 0.2.1', 'connect()', 'dboLog.txt', true, false);
+//          loggerLog('conexion to DB ... 0.2.1', 'connect()', 'dboLog.txt', true, false);
         try{
             $this->connexion = new PDO(Dbo::DB_NAME, Dbo::DB_UNAME, Dbo::DB_PWD);
-//             $connexion = new PDO(DB_NAME, DB_UNAME, DB_PWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-            loggerLog('conexion to DB ...0.2.2', 'connect()', 'dboLog.txt', true, false);
         } catch (PDOException $Exception) {
             $result = 'DB connexion error.0.2.3 | ';
             $result .= $Exception->getCode() . '|';
@@ -32,7 +30,6 @@ class Dbo{
                 , 'dboLog.txt', true, false);
             return false;
         }
-        loggerLog('conexion to DB established 0.2.4', 'connect()', 'dboLog.txt', true, false);
         return true;
      }
      
@@ -49,8 +46,8 @@ class Dbo{
              echo $ex;
              echo '</pre>';
          }
-         loggerLog('send sql request : $request', 'sendRequest()', 'dboLog.txt', true, false);
-         return $query->fetchAll(PDO::FETCH_ASSOC);
+         $ret = $query->fetchAll(PDO::FETCH_ASSOC);
+         return $ret;
      }
      
      /*
@@ -59,6 +56,17 @@ class Dbo{
      function searchStringInTable(string $str, string $table, string $column){
          $this->connect();
          return $this->sendRequest("SELECT id from $table WHERE $column LIKE '%$str%';");
+     }
+     
+     /*
+      * return array id of the object
+      */
+     function searchLastStringInTable(string $str, string $table, string $column){
+         $this->connect();
+         $all = $this->sendRequest("SELECT id from $table WHERE $column LIKE '%$str%';");
+         $last = $all[sizeof($all) - 1];
+         loggerLog('Last sql result : ' . $last["id"], 'searchLastStringInTable()', 'dboLog.txt', true, false);
+         return $last["id"];
      }
      
     function addToTable(string $table, array $columns, array $values){
@@ -81,10 +89,10 @@ class Dbo{
             }
         }
         $this->connect();
-        $id = $this->searchStringInTable($values[0], $table, $columns[0]);
-        if (sizeof($id) < 1){
+        $id = $this->searchLastStringInTable($values[0], $table, $columns[0]);
+        if ($id == null){
             $this->sendRequest("INSERT INTO `$table` ($columnStr) VALUES ($valueStr);");
-            return $this->searchStringInTable($values[0], $table, $columns[0]);
+            $id = $this->searchLastStringInTable($values[0], $table, $columns[0]);
         }
         return $id;
      }

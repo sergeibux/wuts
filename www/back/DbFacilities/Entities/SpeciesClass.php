@@ -20,7 +20,7 @@ class SpeciesClass
             $this->scientificTerms = $scientificTerms;
             $this->descriptive = $descriptive;
             $this->frenchTerms = $frenchTerms;
-            $this->id_specieBranch = $speciesBranch->dbSave();
+            $this->id_specieBranch = $speciesBranch->getId();
             $this->id = $this->dbSave();
     }
     
@@ -28,7 +28,7 @@ class SpeciesClass
         $db = new Dbo();
         $table = "speciesClass";
         $columns = array("scientificTerms", "descriptive", "frenchTerms", "id_speciesBranch");
-        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_specieBranch[0]);
+        $values = array($this->scientificTerms, $this->descriptive, $this->frenchTerms, $this->id_specieBranch);
         $this->id = $db->addToTable($table, $columns, $values);
         return $this->id;
     }
@@ -36,9 +36,9 @@ class SpeciesClass
     /**
      * @return int
      */
-    public function getId_specieClassPrimaire()
+    public function getId()
     {
-        return $this->id_specieClassPrimaire;
+        return $this->id;
     }
 
     /**

@@ -42,13 +42,15 @@
     <main>
         <div class="carte">
             <span>Rerchercher dans cette zone</span>
-            <iframe title="carte" width="390" height="300"
+            <!--iframe title="carte" width="390" height="300"
                 src="https://api.maptiler.com/maps/basic/?key=ptRri5SRXyugsx5Bdomf#15.0/44.57531966394943/-1.2289031580100696">
-            </iframe>
+            </iframe-->
         </div>
         <label class="mdc-text-field mdc-text-field--filled">
             <span class="mdc-text-field__ripple">Embranchement</span>
-            <input class="mdc-text-field__input" type="text" data-bind="value: branch">
+            <input class="mdc-text-field__input" type="select" data-bind="value: branch" list="branch" autocomplete="off">
+            <datalist id="branch" class="mdc-text-field__input" >
+            </datalist>
             <span class="mdc-line-ripple"></span>
         </label>
         <label class="mdc-text-field mdc-text-field--filled">

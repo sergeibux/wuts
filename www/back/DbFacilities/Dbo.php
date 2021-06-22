@@ -53,6 +53,24 @@ class Dbo{
      /*
       * return array id of the object
       */
+     function listAllFromTable(array $list, string $table){
+         $first = true;
+         foreach ($list as $column){
+             if ($first){
+                 $columnStr .= "`$column`";
+                 $first = false;
+             } else {
+                 $columnStr .= ", `$column`";
+             }
+         }
+         $this->connect();
+         $ret = $this->sendRequest("SELECT $columnStr from $table;");
+         return $ret;
+     }
+     
+     /*
+      * return array id of the object
+      */
      function searchStringInTable(string $str, string $table, string $column){
          $this->connect();
          return $this->sendRequest("SELECT id from $table WHERE $column LIKE '%$str%';");

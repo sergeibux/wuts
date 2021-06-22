@@ -9,7 +9,6 @@ class SpeciesBranch
     private $descriptive;
     
     public function __construct(string $scientificTerms, string $frenchTerms, string $descriptive){
-        echo "<br>creating new branch ...<br>";
         $this->scientificTerms = $scientificTerms;
         $this->frenchTerms = $frenchTerms;
         $this->descriptive = $descriptive;
@@ -75,6 +74,14 @@ class SpeciesBranch
     public function setDescriptive(string $descriptive)
     {
         $this->descriptive = $descriptive;
+    }
+    
+    static function getAllBranches(){
+        $db = new Dbo();
+        $table = "speciesBranch";
+        $list = array("scientificTerms", "frenchTerms", "descriptive");
+        $result = $db->listAllFromTable($list, $table);
+        return $result;
     }
 
 }

@@ -44,41 +44,64 @@
     <form action="../indexConnected/indexConnected.html">
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Pseudo</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Mot de passe</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Confirmation du mot de passe</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Nom</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Prénom</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Ville de résidence</span>
-        <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id">
+        <input class="mdc-text-field__input" type="text">
         <span class="mdc-line-ripple"></span>
       </label>
-      <FormLabel component="legend">Niveau de plongée</FormLabel>
-      <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-        <FormControlLabel value="female" label="Female" control={<Radio />}  />
-        <FormControlLabel value="male" label="Male" control={<Radio/>}  />
-        <FormControlLabel value="other" label="Other" control={<Radio />}  />
-        <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
-      </RadioGroup>
+      <br>
+      <br>
+      <div class="mdc-form-field">
+        <input type="radio" id="FFESSM" name="fav_language" value="HTML">
+        <label for="html">FFESSM</label>
+        <input type="radio" id="PADI" name="fav_language" value="CSS">
+        <label for="css">PADI</label>
+        <select name="padi" id="pet-select">
+          <option value="n0">Niveau 0</option>
+          <option value="niveau1">Niveau 1</option>
+          <option value="niveau2">Niveau 2</option>
+          <option value="niveau3">Niveau 3</option>
+        </select>
+      </div>
+      <div class="mdc-form-field">
+        <input type="radio" id="other" name="fav_language" value="JavaScript">
+        <label for="other">Aucun/Autre (Précisez)</label>
+      </div>
+      <br>
+      <label class="mdc-text-field mdc-text-field--filled">
+        <span class="mdc-text-field__ripple">Préçisez</span>
+        <input class="mdc-text-field__input" type="text">
+        <span class="mdc-line-ripple"></span>
+      </label>
+      <label class="mdc-text-field mdc-text-field--filled">
+        <span class="mdc-text-field__ripple">Photo</span>
+        <input class="mdc-text-field__input" type="file">
+        <span class="mdc-line-ripple"></span>
+      </label>
+      <br><br>
       <div class="mdc-touch-target-wrapper">
         <button class="mdc-button mdc-button--raised" type="submit" id="submit">
           <span class="mdc-button__label">Connexion</span>

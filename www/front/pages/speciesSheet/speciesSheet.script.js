@@ -5,4 +5,5 @@ document.getElementById('index').onclick = () => {
 
 function openFile() {
     console.log("evt.target");
+    return false;
 }

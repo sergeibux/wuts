@@ -8,6 +8,9 @@
  * @param boolean $alert will prompt an alert
  */
 function loggerLog(string $msg, string $origin, string $targetFile, bool $console = false, bool $alert = false){
+    if (strstr($_SERVER['REQUEST_URI'], 'API')){
+        return;
+    }
     $target = $_SERVER['DOCUMENT_ROOT'] . '/back/log/' . $targetFile;
     $string = date("d/m/Y - H:i:s");
     $string .= "\n\t$origin :\n\t\t";

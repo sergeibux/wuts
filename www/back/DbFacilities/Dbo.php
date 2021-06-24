@@ -53,6 +53,24 @@ class Dbo{
      /*
       * return array id of the object
       */
+     function listAllFromTable(array $list, string $table){
+         $first = true;
+         foreach ($list as $column){
+             if ($first){
+                 $columnStr .= "`$column`";
+                 $first = false;
+             } else {
+                 $columnStr .= ", `$column`";
+             }
+         }
+         $this->connect();
+         $ret = $this->sendRequest("SELECT $columnStr from $table;");
+         return $ret;
+     }
+     
+     /*
+      * return array id of the object
+      */
      function searchStringInTable(string $str, string $table, string $column){
          $this->connect();
          return $this->sendRequest("SELECT id from $table WHERE $column LIKE '%$str%';");
@@ -68,6 +86,30 @@ class Dbo{
          loggerLog('Last sql result : ' . $last["id"], 'searchLastStringInTable()', 'dboLog.txt', true, false);
          return $last["id"];
      }
+     
+     function listSomeMatchesFromTable(array $list, string $table, string $needle, array $hays, string $sort, string $limit){
+         $first = true;
+         foreach ($list as $column){
+             if ($first){
+                 $columnStr .= "`$column`";
+                 $first = false;
+             } else {
+                 $columnStr .= ", `$column`";
+             }
+         }
+         $first = true;
+         foreach ($hays as $hay){
+             if ($first){
+                 $hayStr .= "`$hay` LIKE '%$needle%'";
+                 $first = false;
+             } else {
+                 $hayStr .= "OR `$hay` LIKE '%$needle%'";
+             }
+         }
+         $this->connect();
+         $all = $this->sendRequest("SELECT $columnStr from $table WHERE $hayStr ORDER BY $list[0] $sort LIMIT $limit;");
+         return $all;
+    }
      
     function addToTable(string $table, array $columns, array $values){
         $first = true;

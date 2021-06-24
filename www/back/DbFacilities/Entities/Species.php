@@ -1,7 +1,6 @@
 <?php
 include_once 'SpeciesGender.php';
 include_once  $_SERVER['DOCUMENT_ROOT'] . "/back/DbFacilities/Dbo.php";
-echo "-sp-3";
 
 class Species
 {
@@ -98,6 +97,27 @@ class Species
     public function setId_specieGender(int $id_specieGender)
     {
         $this->id_specieGender = $id_specieGender;
+    }
+    
+    static function getAllSpecies(){
+        $db = new Dbo();
+        $table = "Species";
+        $list = array("scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
+        $hays = array("scientificName", "frenchName");
+        $sort = "ASC";
+        $limit = 500;
+        $result = $db->listSomeMatchesFromTable($list, $table, "", $hays, $sort, $limit);
+        return $result;
+    }
+    
+    static function getSomeSpeciesMatching($needle, $limit){
+        $db = new Dbo();
+        $table = "Species";
+        $list = array("scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
+        $hays = array("scientificName", "frenchName");
+        $sort = "ASC";
+        $result = $db->listSomeMatchesFromTable($list, $table, $needle, $hays, $sort, $limit);
+        return $result;
     }
 
     

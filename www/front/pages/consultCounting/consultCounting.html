@@ -42,31 +42,57 @@
     <main>
         <div class="carte">
             <span>Rerchercher dans cette zone</span>
-            <iframe title="carte" width="390" height="300"
-                src="https://api.maptiler.com/maps/basic/?key=ptRri5SRXyugsx5Bdomf#20.0/44.57531966394943/-1.2289031580100696">
-            </iframe>
+            <!--iframe title="carte" width="390" height="300"
+                src="https://api.maptiler.com/maps/basic/?key=ptRri5SRXyugsx5Bdomf#15.0/44.57531966394943/-1.2289031580100696">
+            </iframe-->
         </div>
-        <label class="mdc-text-field mdc-text-field--filled">
-            <span class="mdc-text-field__ripple">Embranchement</span>
-            <input class="mdc-text-field__input" type="text" data-bind="value: branch">
-            <span class="mdc-line-ripple"></span>
-        </label>
-        <label class="mdc-text-field mdc-text-field--filled">
-            <span class="mdc-text-field__ripple">Classe/sous-classe</span>
-            <input class="mdc-text-field__input" type="text" data-bind="value: class">
-            <span class="mdc-line-ripple"></span>
-        </label>
-        <label class="mdc-text-field mdc-text-field--filled">
-            <span class="mdc-text-field__ripple">Ordre</span>
-            <input class="mdc-text-field__input" type="text" data-bind="value: order">
-            <span class="mdc-line-ripple"></span>
-        </label>
-        <label class="mdc-text-field mdc-text-field--filled">
-            <span class="mdc-text-field__ripple">Famille</span>
-            <input class="mdc-text-field__input" type="text" data-bind="value: family">
-            <span class="mdc-line-ripple"></span>
-        </label>
+        <div class="form">
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <span class="mdc-text-field__ripple">Embranchement</span>
+	            <input class="mdc-text-field__input" type="select" data-bind="value: branch" list="branch" autocomplete="off">
+	            <datalist id="branch" class="mdc-text-field__input" >
+	            </datalist>
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <!--span class="mdc-text-field__ripple">Classe/sous-classe</span-->
+	            <span class="mdc-text-field__ripple">Classe</span>
+	            <input class="mdc-text-field__input" type="text" data-bind="value: class" list="class" autocomplete="off" id="class">
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <span class="mdc-text-field__ripple">Ordre</span>
+	            <input class="mdc-text-field__input" type="text" data-bind="value: order" list="order" autocomplete="off" id="order">
+	            <datalist id="order" class="mdc-text-field__input" >
+	            </datalist>
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <span class="mdc-text-field__ripple">Famille</span>
+	            <input class="mdc-text-field__input" type="text" data-bind="value: family" list="family" autocomplete="off" id="family">
+	            <datalist id="family" class="mdc-text-field__input" >
+	            </datalist>
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <span class="mdc-text-field__ripple">Genre</span>
+	            <input class="mdc-text-field__input" type="text" data-bind="value: gender" list="gender" autocomplete="off" id="gender">
+	            <datalist id="gender" class="mdc-text-field__input" >
+	            </datalist>
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+	        <label class="mdc-text-field mdc-text-field--filled">
+	            <span class="mdc-text-field__ripple">Espèce</span>
+	            <input class="mdc-text-field__input" type="text" data-bind="value: species" list="species" autocomplete="off" onkeyup="ConsultCounting.displaySpecies();">
+	            <datalist id="species" class="mdc-text-field__input" >
+	            </datalist>
+	            <span class="mdc-line-ripple"></span>
+	        </label>
+        </div>
     </main>
+    <div id="speciesSection">
+    
+    </div>
 
     <!-- Footer -->
     <script src="./consultCounting.script.js"></script>

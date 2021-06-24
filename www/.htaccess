@@ -1,0 +1,4 @@
+RewriteEngine On # Activer le module Rewrite
+RewriteRule ^species/?$ species.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ species.php?id=$1
+RewriteRule ^[^/]+/(\d+)$ species.php?ok=$1

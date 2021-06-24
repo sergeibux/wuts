@@ -25,6 +25,40 @@ class ConsultCounting {
         return Binder.scope[this.prop];
     }
     
+    static async displaySpecies(){
+    	var uri = '../../../back/API/species.php?species=search&limit=20';
+    	var species = await this.getFromAPI(uri);
+    	var options = '';
+    	document.getElementById('speciesSection').innerHTML = "";
+		species.forEach((specie) => {
+			var name = specie.scientificName;
+			if (specie.frenchName != ""
+				&& specie.frenchName.toUpperCase() != "AUTRES"){
+				name += " (" + specie.frenchTerms + ")";
+			}
+			var img = document.createElement('img');
+			img.className = "thumb";
+			img.src = "../../asset/images/" + specie.picture;
+			document.getElementById('speciesSection').appendChild(img);
+		})
+    }
+    
+    static async getSpeciesNames(){
+    	var uri = '../../../back/API/species.php?species=all';
+    	var species = await this.getFromAPI(uri);
+    	var options = '';
+		species.forEach((specie) => {
+			var name = specie.scientificName;
+			if (specie.frenchName != ""
+				&& specie.frenchName.toUpperCase() != "AUTRES"){
+				name += " (" + specie.frenchName + ")";
+			}
+		  options += '<option class="mdc-text-field__input" value="' + specie.id + '">' + name + '</option>';
+		})
+
+		document.getElementById('species').innerHTML = options;
+    }
+    
     static async getBranchesNames(){
     	var uri = '../../../back/API/species.php?branches=all';
     	var branches = await this.getFromAPI(uri);
@@ -32,7 +66,7 @@ class ConsultCounting {
 		branches.forEach((branch) => {
 			var name = branch.scientificTerms;
 			if (branch.frenchTerms != ""
-				&& branch.frenchTerms.toLowerCase() != "autres"){
+				&& branch.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + branch.frenchTerms + ")";
 			}
 		  options += '<option class="mdc-text-field__input" value="' + name + '" />';
@@ -66,3 +100,4 @@ class ConsultCounting {
 }
 
 ConsultCounting.getBranchesNames();
+ConsultCounting.getSpeciesNames();

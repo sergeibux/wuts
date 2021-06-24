@@ -3,6 +3,7 @@
 
 include_once '../DbFacilities/Dbo.php';
 include_once '../DbFacilities/Entities/SpeciesBranch.php';
+include_once '../DbFacilities/Entities/Species.php';
 // include_once '../DbFacilities/DbSucker.php';
 // include_once '../Logger.php';
 
@@ -15,13 +16,9 @@ include_once '../DbFacilities/Entities/SpeciesBranch.php';
   {
       case 'GET':
 //       echo "0";
-          if(!empty($_GET["id"])){
-//               echo "0id";
-              $id = intval($_GET["id"]);
-              getSpecies($id);
-//               echo "1";
-          } else if(!empty($_GET["ok"])){
-              testOk($_GET["ok"]);
+          if(!empty($_GET["species"])){
+              $key = intval($_GET["species"]);
+              getSpecies($key);
           } else if(!empty($_GET["branches"])){
               getBranches($_GET["branches"]);
           } else {
@@ -36,22 +33,23 @@ include_once '../DbFacilities/Entities/SpeciesBranch.php';
           break;
   }
   
-//   function getSpecies(int $id){
-//       //TODO
-//       define("LIMIT", 1);
-//       $dataSrc = DbSucker::MNHN;
-//       $jsonTab = $DbSucker->getSpeciesByIdRange($dataSrc, $i, LIMIT);
-//       $tabSize = sizeof($jsonTab);
-//           for ($j=0; $j<$tabSize; ){
-//               $distSpecies = $jsonTab[$j];
-//               $id = $j + $i;
-//               //                 $species[$id] = new Specimen(); //TODO do not works
-//               $j++;
-//           }
-//           header('Content-Type: application/json');
-//           echo json_encode($jsonTab, JSON_PRETTY_PRINT);
-//           return;
-//   }
+  function getSpecies(int $key){
+      switch ($key){
+          case 'all' :
+              //Get all branches name and descriptions
+              echo json_encode(Species::getAllSpecies(), JSON_PRETTY_PRINT);
+              break;
+          case 'match' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  echo json_encode(Species::getSomeSpeciesMatching($_GET["search"], $_GET["limit"]), JSON_PRETTY_PRINT);
+              }
+              break;
+          default :
+              echo json_encode(Species::getAllSpecies(), JSON_PRETTY_PRINT);
+              break;
+      }
+  }
   
   function testOk($ok){
 //       $tab = array();
@@ -67,40 +65,8 @@ include_once '../DbFacilities/Entities/SpeciesBranch.php';
       echo json_encode($tab, JSON_PRETTY_PRINT);
   }
   
-  /*
-   * Recover all species from outside database
-   * //TODO have to chage this : remote db => our DB
-   * -> MNHM
-   */
-  function getSpecies(){
-// header('Content-Type: application/json');
-// //       echo json_encode($jsonTab, JSON_PRETTY_PRINT);
-//       //TODO
-// //       echo "<br>get all species";
-//       define("LIMIT", 10);
-//       $dataSrc = DbSucker::MNHN;
-//       $totalAmount = $DbSucker->getSpeciesCount($dataSrc, LIMIT);
-//       $json;
-//       for ($i = 0; $i <= $totalAmount; ){
-//           $jsonTab = $DbSucker->getSpeciesByIdRange($dataSrc, $i, LIMIT);
-//           $tabSize = sizeof($jsonTab);
-//           for ($j=0; $j<$tabSize; ){
-//               $distSpecies = $jsonTab[$j];
-//               $id = $j + $i;
-// //                 $species[$id] = new Specimen(); //TODO do not works
-//               $j++;
-//           }
-// //           header('Content-Type: application/json');
-// //           header("Content-type: text/javascript");
-//           $i += LIMIT;
-//           $json = array_push($json, $jsonTab);
-//       }
-//       $tab["result"] = "???";
-//           echo json_encode($tab, JSON_PRETTY_PRINT);
-  }
-  
-  function getBranches($which){
-      switch ($which){
+function getBranches($key){
+      switch ($key){
           case 'all' :
               //Get all branches name and descriptions
               echo json_encode(SpeciesBranch::getAllBranches(), JSON_PRETTY_PRINT);

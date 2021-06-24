@@ -87,6 +87,30 @@ class Dbo{
          return $last["id"];
      }
      
+     function listSomeMatchesFromTable(array $list, string $table, string $needle, array $hays, string $sort, string $limit){
+         $first = true;
+         foreach ($list as $column){
+             if ($first){
+                 $columnStr .= "`$column`";
+                 $first = false;
+             } else {
+                 $columnStr .= ", `$column`";
+             }
+         }
+         $first = true;
+         foreach ($hays as $hay){
+             if ($first){
+                 $hayStr .= "`$hay` LIKE '%$needle%'";
+                 $first = false;
+             } else {
+                 $hayStr .= "OR `$hay` LIKE '%$needle%'";
+             }
+         }
+         $this->connect();
+         $all = $this->sendRequest("SELECT $columnStr from $table WHERE $hayStr ORDER BY $list[0] $sort LIMIT $limit;");
+         return $all;
+    }
+     
     function addToTable(string $table, array $columns, array $values){
         $first = true;
         foreach ($columns as $column){

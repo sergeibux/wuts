@@ -26,7 +26,8 @@ class ConsultCounting {
     }
     
     static async displaySpecies(){
-    	var uri = '../../../back/API/species.php?species=search&limit=20';
+    	var str = document.getElementById('speciesInput').value;
+    	var uri = '../../../back/API/species.php?species=match&search=' + str + '&limit=20';
     	var species = await this.getFromAPI(uri);
     	var options = '';
     	document.getElementById('speciesSection').innerHTML = "";
@@ -53,7 +54,7 @@ class ConsultCounting {
 				&& specie.frenchName.toUpperCase() != "AUTRES"){
 				name += " (" + specie.frenchName + ")";
 			}
-		  options += '<option class="mdc-text-field__input" value="' + specie.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + specie.id + '">' + name + '</option>';
 		})
 
 		document.getElementById('species').innerHTML = options;
@@ -69,7 +70,7 @@ class ConsultCounting {
 				&& branch.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + branch.frenchTerms + ")";
 			}
-		  options += '<option class="mdc-text-field__input" value="' + name + '" />';
+		  options += '<option class="mdc-text-field__input" data-value="' + branch.id + '">' + name + '</option>';
 		})
 
 		document.getElementById('branch').innerHTML = options;

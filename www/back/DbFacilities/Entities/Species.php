@@ -102,7 +102,7 @@ class Species
     static function getAllSpecies(){
         $db = new Dbo();
         $table = "Species";
-        $list = array("scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
+        $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
         $hays = array("scientificName", "frenchName");
         $sort = "ASC";
         $limit = 500;
@@ -113,7 +113,7 @@ class Species
     static function getSomeSpeciesMatching($needle, $limit){
         $db = new Dbo();
         $table = "Species";
-        $list = array("scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
+        $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
         $hays = array("scientificName", "frenchName");
         $sort = "ASC";
         $result = $db->listSomeMatchesFromTable($list, $table, $needle, $hays, $sort, $limit);

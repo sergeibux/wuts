@@ -21,9 +21,6 @@ include_once '../DbFacilities/Entities/Species.php';
               getSpecies($key);
           } else if(!empty($_GET["branches"])){
               getBranches($_GET["branches"]);
-          } else {
-              //TODO have to chage this : remote db => our DB
-              getSpecies();
           }
           break;
       default:

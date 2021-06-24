@@ -18,7 +18,7 @@ class SpeciesBranch
     public function dbSave(){
         $db = new Dbo();
         $table = "speciesBranch";
-        $columns = array("scientificTerms", "frenchTerms", "descriptive");
+        $columns = array("id", "scientificTerms", "frenchTerms", "descriptive");
         $values = array($this->scientificTerms, $this->frenchTerms, $this->descriptive);
         $this->id = $db->addToTable($table, $columns, $values);
         return $this->id;

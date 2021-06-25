@@ -97,6 +97,17 @@ class SpeciesGender
     {
         $this->id_specieFamily = $id_specieFamily;
     }
+    
+    static function getAllGenders(){
+        $db = new Dbo();
+        $table = "speciesGender";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesFamily");
+        $hays = array("scientificTerms", "frenchTerms");
+        $sort = "ASC";
+        $limit = 500;
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
+        return $result;
+    }
 
 }
 

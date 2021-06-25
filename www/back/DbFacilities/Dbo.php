@@ -87,7 +87,7 @@ class Dbo{
          return $last["id"];
      }
      
-     function listSomeMatchesFromTable(array $list, string $table, string $needle, array $hays, string $sort, string $limit){
+     function listSomeMatchesFromTable(array $list, string $table, array $needles, array $hays, string $sort, string $limit){
          $first = true;
          foreach ($list as $column){
              if ($first){
@@ -98,16 +98,19 @@ class Dbo{
              }
          }
          $first = true;
-         foreach ($hays as $hay){
-             if ($first){
-                 $hayStr .= "`$hay` LIKE '%$needle%'";
-                 $first = false;
-             } else {
-                 $hayStr .= "OR `$hay` LIKE '%$needle%'";
+         foreach ($needles as $needle){
+             foreach ($hays as $hay){
+                 if ($first){
+                     $hayStr .= "`$hay` LIKE '%$needle%'";
+                     $first = false;
+                 } else {
+                     $hayStr .= "OR `$hay` LIKE '%$needle%'";
+                 }
              }
          }
          $this->connect();
          $all = $this->sendRequest("SELECT $columnStr from $table WHERE $hayStr ORDER BY $list[0] $sort LIMIT $limit;");
+//          echo "SELECT $columnStr from $table WHERE $hayStr ORDER BY $list[0] $sort LIMIT $limit;<br>";
          return $all;
     }
      

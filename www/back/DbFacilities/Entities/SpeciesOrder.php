@@ -94,6 +94,17 @@ class SpeciesOrder
     {
         $this->id_speciesClass = $id_specieClass;
     }
+    
+    static function getAllOrders(){
+        $db = new Dbo();
+        $table = "speciesOrder";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesClass");
+        $hays = array("scientificTerms", "frenchTerms");
+        $sort = "ASC";
+        $limit = 500;
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
+        return $result;
+    }
 
 }
 

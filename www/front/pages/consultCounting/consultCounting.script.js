@@ -25,7 +25,7 @@ class ConsultCounting {
         return Binder.scope[this.prop];
     }
     
-    static async displaySpecies(){
+    async displaySpecies(){
     	var str = document.getElementById('speciesInput').value;
     	var uri = '../../../back/API/species.php?species=match&search=' + str + '&limit=20';
     	var species = await this.getFromAPI(uri);
@@ -44,7 +44,7 @@ class ConsultCounting {
 		})
     }
     
-    static async getSpeciesNames(){
+    async getSpeciesNames(){
     	var uri = '../../../back/API/species.php?species=all';
     	var species = await this.getFromAPI(uri);
     	var options = '';
@@ -54,13 +54,96 @@ class ConsultCounting {
 				&& specie.frenchName.toUpperCase() != "AUTRES"){
 				name += " (" + specie.frenchName + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-value="' + specie.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-id="' + specie.id + '">' + name + '</option>';
 		})
 
 		document.getElementById('species').innerHTML = options;
     }
     
-    static async getBranchesNames(){
+    async getGendersNames(){
+    	var uri = '../../../back/API/species.php?genders=all';
+    	var genders = await this.getFromAPI(uri);
+    	var options = '';
+    	genders.forEach((gender) => {
+			var name = gender.scientificTerms;
+			if (gender.frenchTerms != ""
+				&& gender.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + gender.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-id="' + gender.id + '">' + name + '</option>';
+		})
+
+		document.getElementById('genders').innerHTML = options;
+    }
+    
+    async getFamiliesNames(){
+    	var uri = '../../../back/API/species.php?families=all';
+    	var families = await this.getFromAPI(uri);
+    	var options = '';
+    	families.forEach((family) => {
+			var name = family.scientificTerms;
+			if (family.frenchTerms != ""
+				&& family.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + family.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-id="' + family.id + '">' + name + '</option>';
+		})
+
+		document.getElementById('families').innerHTML = options;
+    }
+    
+    async getOrdersNames(){
+    	var uri = '../../../back/API/species.php?orders=all';
+    	var orders = await this.getFromAPI(uri);
+    	var options = '';
+    	orders.forEach((order) => {
+			var name = order.scientificTerms;
+			if (order.frenchTerms != ""
+				&& order.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + order.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-id="' + order.id + '">' + name + '</option>';
+		})
+
+		document.getElementById('orders').innerHTML = options;
+    }
+    
+    async getClassesNames(){
+    	var uri = '../../../back/API/species.php?classes=all';
+    	var classes = await this.getFromAPI(uri);
+    	var options = '';
+    	classes.forEach((classe) => {
+			var name = classe.scientificTerms;
+			if (classe.frenchTerms != ""
+				&& classe.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + classe.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-id="' + classe.id + '">' + name + '</option>';
+		})
+
+		document.getElementById('classes').innerHTML = options;
+    }
+
+    
+    async getPossibleClassesNames(){ //TODO
+//    	var str = document.getElementById('branchesInput').value;
+//		var str_id = document.querySelector('#branchesInput').getAttribute('data-id');
+//    	var uri = '../../../back/API/species.php?classes=byBranchesId&search=' + str_id + '&limit=500';
+//    	var classes = await this.getFromAPI(uri);
+//    	var options = '';
+//    	classes.forEach((classe) => {
+//			var name = classe.scientificTerms;
+//			if (classe.frenchTerms != ""
+//				&& classe.frenchTerms.toUpperCase() != "AUTRES"){
+//				name += " (" + classe.frenchTerms + ")";
+//			}
+//			  options += '<option class="mdc-text-field__input" data-id="' + classe.id + '">' + name + '</option>';
+//		})
+//
+//		document.getElementById('classes').innerHTML = options;
+    }
+    
+    async getBranchesNames(){
     	var uri = '../../../back/API/species.php?branches=all';
     	var branches = await this.getFromAPI(uri);
     	var options = '';
@@ -70,14 +153,14 @@ class ConsultCounting {
 				&& branch.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + branch.frenchTerms + ")";
 			}
-		  options += '<option class="mdc-text-field__input" data-value="' + branch.id + '">' + name + '</option>';
+		  options += '<option class="mdc-text-field__input" data-id="' + branch.id + '">' + name + '</option>';
 		})
 
 		document.getElementById('branch').innerHTML = options;
     }
 
     
-    static async getFromAPI(uri){
+    async getFromAPI(uri){
     	return new Promise(function (resolve, reject) {
 	    	var request = new XMLHttpRequest()
 	
@@ -93,12 +176,16 @@ class ConsultCounting {
 	                });
 	    		}
 	    	}
-	
 	    	request.send()
     	});
     }
     
 }
 
-ConsultCounting.getBranchesNames();
-ConsultCounting.getSpeciesNames();
+var consultCounting = new ConsultCounting();
+consultCounting.getBranchesNames();
+consultCounting.getClassesNames();
+consultCounting.getOrdersNames();
+consultCounting.getFamiliesNames();
+consultCounting.getGendersNames();
+consultCounting.getSpeciesNames();

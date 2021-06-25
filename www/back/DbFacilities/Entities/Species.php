@@ -106,17 +106,27 @@ class Species
         $hays = array("scientificName", "frenchName");
         $sort = "ASC";
         $limit = 500;
-        $result = $db->listSomeMatchesFromTable($list, $table, "", $hays, $sort, $limit);
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
         return $result;
     }
     
-    static function getSomeSpeciesMatching($needle, $limit){
+    static function getSomeSpeciesMatching(string $needle, int $limit){
         $db = new Dbo();
         $table = "Species";
         $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
         $hays = array("scientificName", "frenchName");
         $sort = "ASC";
-        $result = $db->listSomeMatchesFromTable($list, $table, $needle, $hays, $sort, $limit);
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) $needle, $hays, $sort, $limit);
+        return $result;
+    }
+    
+    static function getSpeciesWithGenderId(array $genderIds){
+        $db = new Dbo();
+        $table = "Species";
+        $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
+        $hays = array("id_speciesGender");
+        $sort = "ASC";
+        $result = $db->listSomeMatchesFromTable($list, $table, $genderIds, $hays, $sort, $limit);
         return $result;
     }
 

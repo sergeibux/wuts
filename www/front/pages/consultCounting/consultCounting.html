@@ -49,7 +49,7 @@
         <div class="form">
 	        <label class="mdc-text-field mdc-text-field--filled">
 	            <span class="mdc-text-field__ripple">Embranchement</span>
-	            <input class="mdc-text-field__input" type="select" data-bind="value: branch" list="branch" autocomplete="off">
+	            <input id="branchesInput" class="mdc-text-field__input" type="text" data-bind="value: branch" list="branch" autocomplete="off" onchange="consultCounting.getPossibleClassesNames();">
 	            <datalist id="branch" class="mdc-text-field__input" >
 	            </datalist>
 	            <span class="mdc-line-ripple"></span>
@@ -57,27 +57,29 @@
 	        <label class="mdc-text-field mdc-text-field--filled">
 	            <!--span class="mdc-text-field__ripple">Classe/sous-classe</span-->
 	            <span class="mdc-text-field__ripple">Classe</span>
-	            <input class="mdc-text-field__input" type="text" data-bind="value: class" list="class" autocomplete="off" id="class">
+	            <input id="classesInput" class="mdc-text-field__input" type="text" data-bind="value: class" list="classes" autocomplete="off" id="class">
+	            <datalist id="classes" class="mdc-text-field__input" >
+	            </datalist>
 	            <span class="mdc-line-ripple"></span>
 	        </label>
 	        <label class="mdc-text-field mdc-text-field--filled">
 	            <span class="mdc-text-field__ripple">Ordre</span>
-	            <input class="mdc-text-field__input" type="text" data-bind="value: order" list="order" autocomplete="off" id="order">
-	            <datalist id="order" class="mdc-text-field__input" >
+	            <input id="ordersInput" class="mdc-text-field__input" type="text" data-bind="value: order" list="orders" autocomplete="off" id="order">
+	            <datalist id="orders" class="mdc-text-field__input" >
 	            </datalist>
 	            <span class="mdc-line-ripple"></span>
 	        </label>
 	        <label class="mdc-text-field mdc-text-field--filled">
 	            <span class="mdc-text-field__ripple">Famille</span>
-	            <input class="mdc-text-field__input" type="text" data-bind="value: family" list="family" autocomplete="off" id="family">
-	            <datalist id="family" class="mdc-text-field__input" >
+	            <input id="familiesInput" class="mdc-text-field__input" type="text" data-bind="value: family" list="families" autocomplete="off" id="family">
+	            <datalist id="families" class="mdc-text-field__input" >
 	            </datalist>
 	            <span class="mdc-line-ripple"></span>
 	        </label>
 	        <label class="mdc-text-field mdc-text-field--filled">
 	            <span class="mdc-text-field__ripple">Genre</span>
-	            <input class="mdc-text-field__input" type="text" data-bind="value: gender" list="gender" autocomplete="off" id="gender">
-	            <datalist id="gender" class="mdc-text-field__input" >
+	            <input id="genderInput" class="mdc-text-field__input" type="text" data-bind="value: gender" list="genders" autocomplete="off">
+	            <datalist id="genders" class="mdc-text-field__input" >
 	            </datalist>
 	            <span class="mdc-line-ripple"></span>
 	        </label>

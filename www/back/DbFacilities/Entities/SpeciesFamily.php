@@ -92,7 +92,18 @@ class speciesFamily
     public function setId_specieOrder(int $id_specieOrder)
     {
         $this->id_specieOrder = $id_specieOrder;
-    }    
+    }
+    
+    static function getAllFamilies(){
+        $db = new Dbo();
+        $table = "speciesFamily";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesOrder");
+        $hays = array("scientificTerms", "frenchTerms");
+        $sort = "ASC";
+        $limit = 500;
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
+        return $result;
+    }
     
 }
 

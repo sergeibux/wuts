@@ -98,5 +98,26 @@ class SpeciesClass
         $this->id_specieBranch = $id_specieBranch;
     }
     
+    static function getAllClasses(){
+        $db = new Dbo();
+        $table = "speciesClass";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesBranch");
+        $hays = array("scientificTerms", "frenchTerms");
+        $sort = "ASC";
+        $limit = 500;
+        $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
+        return $result;
+    }
+    
+    static function getSomeClassesMatchingBranches(array $needles, int $limit){
+        $db = new Dbo();
+        $table = "Species";
+        $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesBranch");
+        $hays = array("id_speciesBranch");
+        $sort = "ASC";
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit);
+        return $result;
+}
+    
 }
 

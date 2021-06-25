@@ -17,29 +17,34 @@ include_once '../DbFacilities/Entities/Species.php';
       case 'GET':
 //       echo "0";
           if(!empty($_GET["species"])){
-              $key = intval($_GET["species"]);
+              $key = strval($_GET["species"]);
               getSpecies($key);
-          } else if(!empty($_GET["branches"])){
+          } else if(!empty($_GET["genders"])){
+              getGenders($_GET["genders"]);
+          } else if(!empty($_GET["families"])){
+              getFamilies($_GET["families"]);
+          } else if(!empty($_GET["orders"])){
+              getOrders($_GET["orders"]);
+          } else if(!empty($_GET["classes"])){
+              getClasses($_GET["classes"]);
+          }else if(!empty($_GET["branches"])){
               getBranches($_GET["branches"]);
           }
           break;
       default:
-//           echo "0def";
-          // Requête invalide
           header("HTTP/1.0 405 Method Not Allowed");
           break;
   }
   
-  function getSpecies(int $key){
+  function getSpecies(string $key){
       switch ($key){
           case 'all' :
-              //Get all branches name and descriptions
               echo json_encode(Species::getAllSpecies(), JSON_PRETTY_PRINT);
               break;
           case 'match' :
               if (!empty($_GET["search"])
               && !empty($_GET["limit"])){
-                  echo json_encode(Species::getSomeSpeciesMatching($_GET["search"], $_GET["limit"]), JSON_PRETTY_PRINT);
+                  echo json_encode(Species::getSomeSpeciesMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
           default :
@@ -48,24 +53,85 @@ include_once '../DbFacilities/Entities/Species.php';
       }
   }
   
-  function testOk($ok){
-//       $tab = array();
-      if ($ok == "tab"){
-          $content[0] = "number 0";
-          $content[1] = 1;
-          $content[2] = "rest API working with PHP";
-//            $tab = $content;
-          $tab["result"] = $content;
-      } else {
-          $tab["result"] = "OK : $ok";
+  function getGenders(string $key){
+      switch ($key){
+          case 'all' :
+              echo json_encode(SpeciesGender::getAllGenders(), JSON_PRETTY_PRINT);
+              break;
+          case 'match' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  echo json_encode(SpeciesGender::getSomeGendersMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          default :
+              echo json_encode(SpeciesGender::getAllGenders(), JSON_PRETTY_PRINT);
+              break;
       }
-      echo json_encode($tab, JSON_PRETTY_PRINT);
   }
+  
+  function getFamilies(string $key){
+      switch ($key){
+          case 'all' :
+              echo json_encode(SpeciesFamily::getAllFamilies(), JSON_PRETTY_PRINT);
+              break;
+          case 'match' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  echo json_encode(SpeciesFaimly::getSomeFamiliesMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          default :
+              echo json_encode(SpeciesFamily::getAllFamililes(), JSON_PRETTY_PRINT);
+              break;
+      }
+  }
+  
+  function getOrders(string $key){
+      switch ($key){
+          case 'all' :
+              echo json_encode(SpeciesOrder::getAllOrders(), JSON_PRETTY_PRINT);
+              break;
+          case 'match' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  echo json_encode(SpeciesOrder::getSomeOrdersMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          default :
+              echo json_encode(SpeciesOrder::getAllOrders(), JSON_PRETTY_PRINT);
+              break;
+      }
+  }
+  
+  function getClasses(string $key){
+      switch ($key){
+          case 'all' :
+              echo json_encode(SpeciesClass::getAllClasses(), JSON_PRETTY_PRINT);
+              break;
+          case 'match' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  echo json_encode(SpeciesClass::getSomeClassesMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          case 'byBranchesId' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  $arraySearch = explode("#", strval($_GET["search"]));
+                  echo json_encode(SpeciesClass::getSomeClassesMatchingBranches($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          default :
+              echo json_encode(SpeciesClass::getAllClasses(), JSON_PRETTY_PRINT);
+              break;
+      }
+  }
+  
   
 function getBranches($key){
       switch ($key){
           case 'all' :
-              //Get all branches name and descriptions
               echo json_encode(SpeciesBranch::getAllBranches(), JSON_PRETTY_PRINT);
               break;
           default : 

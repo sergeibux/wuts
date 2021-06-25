@@ -79,7 +79,7 @@ class SpeciesBranch
     static function getAllBranches(){
         $db = new Dbo();
         $table = "speciesBranch";
-        $list = array("scientificTerms", "frenchTerms", "descriptive");
+        $list = array("id", "scientificTerms", "frenchTerms", "descriptive");
         $result = $db->listAllFromTable($list, $table);
         return $result;
     }

@@ -20,7 +20,7 @@ main {
 .thumb {
 	padding: 1%;
 	width: 23%;
-	max-height: 25%;
+	max-height: 50%;
 	border-radius: 25px;
 	transition-duration: 1s,1s,1s,1s,1s,1s;
 	transform-origin: top left;

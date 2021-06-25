@@ -42,6 +42,10 @@ main {
   padding: 15px;
 }
 
+button {
+  --mdc-theme-primary: #47525E;
+}
+
 
 /* For mobile phones: */
 

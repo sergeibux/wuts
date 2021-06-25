@@ -45,6 +45,7 @@
       <iframe title="carte" src="https://api.maptiler.com/maps/basic/?key=ptRri5SRXyugsx5Bdomf#14.0/44.57531966394943/-1.2289031580100696">
       </iframe>
     </div>
+    <br>
     <form action="">
       <div>
         <label class="mdc-text-field mdc-text-field--filled">
@@ -52,24 +53,26 @@
           <input class="mdc-text-field__input" type="text" data-bind="value: branch">
           <span class="mdc-line-ripple"></span>
         </label>
+        <br><br>
         <div class="mdc-touch-target-wrapper">
           <button class="mdc-button mdc-button--raised">
             <span class="mdc-button__label">Cherhcer par<br>mot-clé</span>
           </button>
         </div>
       </div>
+      <br>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Quantité observée</span>
         <input class="mdc-text-field__input" type="text" data-bind="value: class">
         <span class="mdc-line-ripple"></span>
       </label>
-      <br>
+      <br><br>
       <div class="mdc-touch-target-wrapper">
-        <button class="mdc-button mdc-button--raised" (click)="onclick()">
+        <button class="mdc-button mdc-button--raised" onclick="openFile();">
           <span class="mdc-button__label">Ajouter des<br>photos</span>
         </button>
       </div>
-      <br>
+      <br><br>
       <label class="mdc-text-field mdc-text-field--filled">
         <span class="mdc-text-field__ripple">Remarques</span>
         <input class="mdc-text-field__input" type="text" data-bind="value: order" multiline>

@@ -108,6 +108,17 @@ class SpeciesGender
         $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
         return $result;
     }
+    
+    static function getSomeGendersMatchingFamilies(array $needles, int $limit){
+        $db = new Dbo();
+        $table = "speciesGender";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesFamily");
+        $hays = array("id_speciesFamily");
+        $sort = "ASC";
+        $preciseMatching = true;
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit, $preciseMatching);
+        return $result;
+    }
 
 }
 

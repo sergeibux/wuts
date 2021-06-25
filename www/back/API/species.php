@@ -47,6 +47,13 @@ include_once '../DbFacilities/Entities/Species.php';
                   echo json_encode(Species::getSomeSpeciesMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
+          case 'byGendersId' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  $arraySearch = explode("#", strval($_GET["search"]));
+                  echo json_encode(SpeciesFamily::getSpeciesWithGenderId($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
           default :
               echo json_encode(Species::getAllSpecies(), JSON_PRETTY_PRINT);
               break;
@@ -62,6 +69,13 @@ include_once '../DbFacilities/Entities/Species.php';
               if (!empty($_GET["search"])
               && !empty($_GET["limit"])){
                   echo json_encode(SpeciesGender::getSomeGendersMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          case 'byFamiliesId' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  $arraySearch = explode("#", strval($_GET["search"]));
+                  echo json_encode(SpeciesGender::getSomeGendersMatchingFamilies($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
           default :
@@ -81,6 +95,13 @@ include_once '../DbFacilities/Entities/Species.php';
                   echo json_encode(SpeciesFaimly::getSomeFamiliesMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
+          case 'byOrdersId' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  $arraySearch = explode("#", strval($_GET["search"]));
+                  echo json_encode(SpeciesFamily::getSomeFamiliesMatchingOrders($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
           default :
               echo json_encode(SpeciesFamily::getAllFamililes(), JSON_PRETTY_PRINT);
               break;
@@ -96,6 +117,13 @@ include_once '../DbFacilities/Entities/Species.php';
               if (!empty($_GET["search"])
               && !empty($_GET["limit"])){
                   echo json_encode(SpeciesOrder::getSomeOrdersMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
+              }
+              break;
+          case 'byBranchesId' :
+              if (!empty($_GET["search"])
+              && !empty($_GET["limit"])){
+                  $arraySearch = explode("#", strval($_GET["search"]));
+                  echo json_encode(SpeciesOrder::getSomeOrdersMatchingClasses($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
           default :

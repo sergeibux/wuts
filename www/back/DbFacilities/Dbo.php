@@ -87,7 +87,7 @@ class Dbo{
          return $last["id"];
      }
      
-     function listSomeMatchesFromTable(array $list, string $table, array $needles, array $hays, string $sort, string $limit){
+     function listSomeMatchesFromTable(array $list, string $table, array $needles, array $hays, string $sort, string $limit, bool $preciseMatching = false){
          $first = true;
          foreach ($list as $column){
              if ($first){
@@ -101,10 +101,18 @@ class Dbo{
          foreach ($needles as $needle){
              foreach ($hays as $hay){
                  if ($first){
-                     $hayStr .= "`$hay` LIKE '%$needle%'";
+                     if ($preciseMatching){
+                         $hayStr .= "`$hay` LIKE '%$needle%'";
+                     } else {
+                         $hayStr .= "`$hay` = '$needle'";
+                     }
                      $first = false;
                  } else {
-                     $hayStr .= "OR `$hay` LIKE '%$needle%'";
+                     if ($preciseMatching){
+                         $hayStr .= "OR `$hay` LIKE '%$needle%'";
+                     } else {
+                         $hayStr .= "OR `$hay` = '$needle'";
+                     }
                  }
              }
          }

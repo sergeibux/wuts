@@ -111,13 +111,14 @@ class SpeciesClass
     
     static function getSomeClassesMatchingBranches(array $needles, int $limit){
         $db = new Dbo();
-        $table = "Species";
-        $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesBranch");
+        $table = "speciesClass";
+        $list = array("id", "scientificTerms", "frenchTerms", "id_speciesBranch");
         $hays = array("id_speciesBranch");
         $sort = "ASC";
-        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit);
+        $preciseMatching = true;
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit, $preciseMatching);
         return $result;
-}
+    }
     
 }
 

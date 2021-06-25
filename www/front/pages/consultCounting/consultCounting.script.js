@@ -54,7 +54,7 @@ class ConsultCounting {
 				&& specie.frenchName.toUpperCase() != "AUTRES"){
 				name += " (" + specie.frenchName + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-id="' + specie.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + specie.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('species').innerHTML = options;
@@ -70,7 +70,7 @@ class ConsultCounting {
 				&& gender.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + gender.frenchTerms + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-id="' + gender.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + gender.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('genders').innerHTML = options;
@@ -86,7 +86,7 @@ class ConsultCounting {
 				&& family.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + family.frenchTerms + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-id="' + family.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + family.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('families').innerHTML = options;
@@ -102,7 +102,7 @@ class ConsultCounting {
 				&& order.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + order.frenchTerms + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-id="' + order.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + order.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('orders').innerHTML = options;
@@ -118,29 +118,130 @@ class ConsultCounting {
 				&& classe.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + classe.frenchTerms + ")";
 			}
-			  options += '<option class="mdc-text-field__input" data-id="' + classe.id + '">' + name + '</option>';
+			  options += '<option class="mdc-text-field__input" data-value="' + classe.id + '" name ="' + name + '">' + name + '</option>';
+		})
+
+		document.getElementById('classes').innerHTML = options;
+    }
+    
+    async getPossibleClassesNames(){
+    	var selectedOption = branch.options.namedItem(branchesInput.value);
+		if (selectedOption) {
+			var selectedId = selectedOption.getAttribute('data-value');
+		    var result = "data-values : " + selectedId;
+		    console.log({selectedId});
+		} else {
+		    var result = "No branch ID available for value : " + branchesInput.value;
+		}
+    	var uri = '../../../back/API/species.php?classes=byBranchesId&search=' + selectedId + '&limit=500';
+    	var classes = await this.getFromAPI(uri);
+    	var options = '';
+    	classes.forEach((classe) => {
+			var name = classe.scientificTerms;
+			if (classe.frenchTerms != ""
+				&& classe.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + classe.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-value="' + classe.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('classes').innerHTML = options;
     }
 
+    async getPossibleOrdersNames(){
+    	var selectedOption = classes.options.namedItem(classesInput.value);
+		if (selectedOption) {
+			var selectedId = selectedOption.getAttribute('data-value');
+		    var result = "data-values : " + selectedId;
+		    console.log({selectedId});
+		} else {
+		    var result = "No class ID available for value : " + classesInput.value;
+		}
+    	var uri = '../../../back/API/species.php?orders=byClassesId&search=' + selectedId + '&limit=500';
+    	var orders = await this.getFromAPI(uri);
+    	var options = '';
+    	orders.forEach((order) => {
+			var name = order.scientificTerms;
+			if (order.frenchTerms != ""
+				&& order.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + order.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-value="' + order.id + '" name ="' + name + '">' + name + '</option>';
+		})
+
+		document.getElementById('classes').innerHTML = options;
+    }
     
-    async getPossibleClassesNames(){ //TODO
-//    	var str = document.getElementById('branchesInput').value;
-//		var str_id = document.querySelector('#branchesInput').getAttribute('data-id');
-//    	var uri = '../../../back/API/species.php?classes=byBranchesId&search=' + str_id + '&limit=500';
-//    	var classes = await this.getFromAPI(uri);
-//    	var options = '';
-//    	classes.forEach((classe) => {
-//			var name = classe.scientificTerms;
-//			if (classe.frenchTerms != ""
-//				&& classe.frenchTerms.toUpperCase() != "AUTRES"){
-//				name += " (" + classe.frenchTerms + ")";
-//			}
-//			  options += '<option class="mdc-text-field__input" data-id="' + classe.id + '">' + name + '</option>';
-//		})
-//
-//		document.getElementById('classes').innerHTML = options;
+    async getPossibleFamiliesNames(){
+    	var selectedOption = orders.options.namedItem(ordersInput.value);
+		if (selectedOption) {
+			var selectedId = selectedOption.getAttribute('data-value');
+		    var result = "data-values : " + selectedId;
+		    console.log({selectedId});
+		} else {
+		    var result = "No order ID available for value : " + ordersInput.value;
+		}
+    	var uri = '../../../back/API/species.php?families=byOrdersId&search=' + selectedId + '&limit=500';
+    	var families = await this.getFromAPI(uri);
+    	var options = '';
+    	families.forEach((family) => {
+			var name = family.scientificTerms;
+			if (family.frenchTerms != ""
+				&& family.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + family.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-value="' + family.id + '" name ="' + name + '">' + name + '</option>';
+		})
+
+		document.getElementById('orders').innerHTML = options;
+    }
+    
+    async getPossibleGendersNames(){
+    	var selectedOption = families.options.namedItem(familiesInput.value);
+		if (selectedOption) {
+			var selectedId = selectedOption.getAttribute('data-value');
+		    var result = "data-values : " + selectedId;
+		    console.log({selectedId});
+		} else {
+		    var result = "No families ID available for value : " + familiesInput.value;
+		}
+    	var uri = '../../../back/API/species.php?genders=byFamiliesId&search=' + selectedId + '&limit=500';
+    	var genders = await this.getFromAPI(uri);
+    	var options = '';
+    	genders.forEach((gender) => {
+			var name = gender.scientificTerms;
+			if (gender.frenchTerms != ""
+				&& gender.frenchTerms.toUpperCase() != "AUTRES"){
+				name += " (" + gender.frenchTerms + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-value="' + gender.id + '" name ="' + name + '">' + name + '</option>';
+		})
+
+		document.getElementById('genders').innerHTML = options;
+    }
+    
+    async getPossibleSpeciesNames(){
+    	var selectedOption = genders.options.namedItem(genderInput.value);
+		if (selectedOption) {
+			var selectedId = selectedOption.getAttribute('data-value');
+		    var result = "data-values : " + selectedId;
+		    console.log({selectedId});
+		} else {
+		    var result = "No genders ID available for value : " + genderInput.value;
+		}
+    	var uri = '../../../back/API/species.php?species=bygendersId&search=' + selectedId + '&limit=500';
+    	var species = await this.getFromAPI(uri);
+    	var options = '';
+    	species.forEach((specie) => {
+			var name = specie.scientificName;
+			if (specie.frenchName != ""
+				&& specie.frenchName.toUpperCase() != "AUTRES"){
+				name += " (" + specie.frenchName + ")";
+			}
+			  options += '<option class="mdc-text-field__input" data-value="' + specie.id + '" name ="' + name + '">' + name + '</option>';
+		})
+
+		document.getElementById('species').innerHTML = options;
     }
     
     async getBranchesNames(){
@@ -153,7 +254,7 @@ class ConsultCounting {
 				&& branch.frenchTerms.toUpperCase() != "AUTRES"){
 				name += " (" + branch.frenchTerms + ")";
 			}
-		  options += '<option class="mdc-text-field__input" data-id="' + branch.id + '">' + name + '</option>';
+		  options += '<option class="mdc-text-field__input" data-value="' + branch.id + '" name ="' + name + '">' + name + '</option>';
 		})
 
 		document.getElementById('branch').innerHTML = options;

@@ -126,7 +126,8 @@ class Species
         $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");
         $hays = array("id_speciesGender");
         $sort = "ASC";
-        $result = $db->listSomeMatchesFromTable($list, $table, $genderIds, $hays, $sort, $limit);
+        $preciseMatching = true;
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit, $preciseMatching);
         return $result;
     }
 

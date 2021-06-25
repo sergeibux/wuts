@@ -105,6 +105,17 @@ class SpeciesOrder
         $result = $db->listSomeMatchesFromTable($list, $table, (array) "", $hays, $sort, $limit);
         return $result;
     }
+    
+    static function getSomeClassesMatchingBranches(array $needles, int $limit){
+        $db = new Dbo();
+        $table = "speciesOrder";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesClass");
+        $hays = array("id_speciesClass");
+        $sort = "ASC";
+        $preciseMatching = true;
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit, $preciseMatching);
+        return $result;
+    }
 
 }
 

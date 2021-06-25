@@ -105,5 +105,16 @@ class speciesFamily
         return $result;
     }
     
+    static function getSomeFamiliesMatchingOrders(array $needles, int $limit){
+        $db = new Dbo();
+        $table = "speciesFamily";
+        $list = array("id", "scientificTerms", "descriptive", "frenchTerms", "id_speciesOrder");
+        $hays = array("id_speciesOrder");
+        $sort = "ASC";
+        $preciseMatching = true;
+        $result = $db->listSomeMatchesFromTable($list, $table, $needles, $hays, $sort, $limit, $preciseMatching);
+        return $result;
+    }
+    
 }
 

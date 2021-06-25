@@ -101,7 +101,7 @@ class Dbo{
          foreach ($needles as $needle){
              foreach ($hays as $hay){
                  if ($first){
-                     if ($preciseMatching){
+                     if (!$preciseMatching){
                          $hayStr .= "`$hay` LIKE '%$needle%'";
                      } else {
                          $hayStr .= "`$hay` = '$needle'";

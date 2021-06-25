@@ -120,7 +120,7 @@ class Species
         return $result;
     }
     
-    static function getSpeciesWithGenderId(array $genderIds){
+    static function getSpeciesWithGenderId(array $needles, int $limit){
         $db = new Dbo();
         $table = "Species";
         $list = array("id", "scientificName", "picture", "frenchName", "englishName", "id_speciesGender");

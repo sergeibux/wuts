@@ -51,7 +51,7 @@ include_once '../DbFacilities/Entities/Species.php';
               if (!empty($_GET["search"])
               && !empty($_GET["limit"])){
                   $arraySearch = explode("#", strval($_GET["search"]));
-                  echo json_encode(SpeciesFamily::getSpeciesWithGenderId($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
+                  echo json_encode(Species::getSpeciesWithGenderId($arraySearch, intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
           default :
@@ -119,7 +119,7 @@ include_once '../DbFacilities/Entities/Species.php';
                   echo json_encode(SpeciesOrder::getSomeOrdersMatching(strval($_GET["search"]), intval($_GET["limit"])), JSON_PRETTY_PRINT);
               }
               break;
-          case 'byBranchesId' :
+          case 'byClassesId' :
               if (!empty($_GET["search"])
               && !empty($_GET["limit"])){
                   $arraySearch = explode("#", strval($_GET["search"]));
